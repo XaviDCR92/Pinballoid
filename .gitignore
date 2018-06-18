@@ -7,6 +7,9 @@
 *.obj
 *.elf
 
+# PSX intermediate CD-ROM image files
+*.iso
+
 # Linker output
 *.ilk
 *.map

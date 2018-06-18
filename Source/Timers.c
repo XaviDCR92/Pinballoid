@@ -13,9 +13,9 @@
  * *************************************/
 
 #include "Interrupts.h"
+#include <psx.h>
 #include <stdio.h>
 #include <stdint.h>
-#include <stdlib.h>
 #include <stddef.h>
 
 /* *************************************
@@ -66,7 +66,7 @@ void TimersInit(void)
     SetRCntHandler(&ISR_RootCounter2, RCNT2_INDEX, RCNT2_COMPARE_VALUE);
 
     /* Enable RCnt2 interrupt. */
-    InterruptsEnable(INT_SOURCE_RCNT2);
+    InterruptsEnableInt(INT_SOURCE_RCNT2);
 }
 
 /*******************************************************************//***

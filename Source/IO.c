@@ -12,6 +12,7 @@
  * Includes
  * *************************************/
 
+#include "IO.h"
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -98,7 +99,7 @@ const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const peSize)
                  * to file size. Now read file data into buffer. */
 
                 /* Reset file pointer iterator position first. */
-                if (fseek(f, 0, SEEK_SET) == 0 /* Sucess code. */)
+                if (fseek(pFile, 0, SEEK_SET) == 0 /* Sucess code. */)
                 {
                     /* This buffer holds file data read from CD-ROM.
                      * It is cleared out on each call to IOLoadFile(),
@@ -117,7 +118,7 @@ const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const peSize)
 
                         /* Finally, return address to buffer so it can be
                          * used by external modules. */
-                        return pBuffer;
+                        return au8FileBuffer;
                     }
                     else
                     {

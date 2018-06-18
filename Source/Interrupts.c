@@ -26,6 +26,23 @@
 *
 * \brief    Interrupt mask register.
 *
+*           According to NoCash specifications, I_MASK bits are
+*           structured as follows:
+*
+*           0     IRQ0 VBLANK (PAL=50Hz, NTSC=60Hz)
+*           1     IRQ1 GPU   Can be requested via GP0(1Fh) command
+*           2     IRQ2 CDROM
+*           3     IRQ3 DMA
+*           4     IRQ4 TMR0  Timer 0 aka Root Counter 0
+*           5     IRQ5 TMR1  Timer 1 aka Root Counter 1
+*           6     IRQ6 TMR2  Timer 2 aka Root Counter 2
+*           7     IRQ7 Controller and Memory Card - Byte Received Interrupt
+*           8     IRQ8 SIO
+*           9     IRQ9 SPU
+*           10    IRQ10 Controller - Lightpen Interrupt
+*           11-15 Not used (always zero)
+*           16-31 Garbage
+*
 ************************************************************************/
 #ifndef I_MASK
 #define I_MASK  (*(volatile unsigned int*)0x1F801074)
