@@ -1,4 +1,4 @@
-/*******************************************************************//***
+/*******************************************************************//**
 *
 * \file     IO.c
 *
@@ -42,9 +42,9 @@
  * Functions definition
  * *************************************/
 
-/*******************************************************************//***
+/*******************************************************************//**
 *
-* \brief    Loads a file with absolute file path indicated by \ref
+* \brief    Loads a file with absolute file path indicated by
 *           strFileName.
 *
 *           File data is stored into a dynamically-allocated buffer
@@ -63,7 +63,7 @@
 * \return   Address to a read-only buffer with file data if successful,
 *           NULL pointer otherwise.
 *
-* \return   \ref peSize is assigned to actual file size in bytes
+* \return   peSize is assigned to actual file size in bytes
 *           if successful, IO_INVALID_FILE_SIZE otherwise.
 *
 ************************************************************************/

@@ -1,0 +1,4 @@
+BOOT = cdrom:\PB.EXE;1
+TCB = 4
+EVENT = 8
+STACK = 801FF800

@@ -1,4 +1,4 @@
-/*******************************************************************//***
+/*******************************************************************//**
 *
 * \file     Gfx.c
 *
@@ -16,7 +16,6 @@
 #include "IO.h"
 #include <psx.h>
 #include <psxgpu.h>
-#include <stdlib.h>
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -25,7 +24,7 @@
  * Defines
  * *************************************/
 
-/*******************************************************************//***
+/*******************************************************************//**
 *
 * \brief    Maximum size for a GsSprite instance supported by PSX
 *           hardware.
@@ -73,13 +72,14 @@ static void GfxInitDrawEnv(void);
 static void GfxInitDispEnv(void);
 static void GfxSwapBuffers(void);
 static void GfxSortBigSprite(GsSprite* const psSpr);
+static void GfxSetPrimList(void);
 static void ISR_VBlank(void);
 
 /* *************************************
  * Functions definition
  * *************************************/
 
-/*******************************************************************//***
+/*******************************************************************//**
 *
 * \brief    Initialization of Gfx module.
 *
@@ -88,23 +88,22 @@ static void ISR_VBlank(void);
 ************************************************************************/
 void GfxInit(void)
 {
-    enum
-    {
-        /* Maximum amount of low-level primitive data. */
-        PRIMITIVE_LIST_SIZE = 0x400,
-    };
-
-    /* Buffer that will hold all primitive low-level data. */
-    static uint32_t au32PrimList[PRIMITIVE_LIST_SIZE];
-
     /* Graphics synthetiser (GPU) initialization. */
     GsInit();
 
     /* Clear VRAM. */
     GsClearMem();
 
+#if ( (VIDEO_MODE == VMODE_PAL) || (VIDEO_MODE == VMODE_NSTC) )
+
     /* Set Video Resolution. VIDEO_MODE can be either VMODE_PAL or VMODE_NTSC */
     GsSetVideoMode(X_SCREEN_RESOLUTION, Y_SCREEN_RESOLUTION, VIDEO_MODE);
+
+#else /* ( (VIDEO_MODE == VMODE_PAL) || (VIDEO_MODE == VMODE_NSTC) ) */
+
+#error  "Undefined VIDEO_MODE"
+
+#endif /* ( (VIDEO_MODE == VMODE_PAL) || (VIDEO_MODE == VMODE_NSTC) ) */
 
     /* Set Drawing Environment. */
     GfxInitDrawEnv();
@@ -112,21 +111,24 @@ void GfxInit(void)
     /* Set Display Environment. */
     GfxInitDispEnv();
 
-    /* Set Primitive List. */
-    GsSetList(au32PrimList);
+    /* Set primitive list. */
+    GfxSetPrimList();
 
     /* Set Vsync interrupt handler for screen refresh. */
     SetVBlankHandler(&ISR_VBlank);
 }
 
-/*******************************************************************//***
+/*******************************************************************//**
 *
-* \brief    Loads data from file indicated by \ref strFilePath, uploads
+* \brief    Loads data from file indicated by strFilePath, uploads
 *           it into VRAM and sets up a new GsSprite instance.
 *
 * \param    strFilePath
 *               Absolute file path e.g.:
 *               "cdrom:\\DATA\\SPRITES\\TILESET1.TIM;1".
+*
+* \param    pSpr
+*               Pointer to sprite to be filled with image data.
 *
 * \return   Returns true when tasks could be made successfully,
 *           false otherwise.
@@ -189,7 +191,7 @@ bool GfxSpriteFromFile(const char* const strFilePath, GsSprite* const pSpr)
     return false;
 }
 
-/*******************************************************************//***
+/*******************************************************************//**
 *
 * \brief    Draws current primitive list into screen and performs
 *           double buffering.
@@ -214,12 +216,15 @@ void GfxDrawScene(void)
 
     /* Draw all primitives into screen. */
     GsDrawList();
+
+    /* Swap low-level primitive data buffers. */
+    GfxSetPrimList();
 }
 
-/*******************************************************************//***
+/*******************************************************************//**
 *
-* \brief    Indicates whether a rectangle defined by \ref x, \ref y,
-*           \ref w and \ref h is inside active drawing area or not.
+* \brief    Indicates whether a rectangle defined by x, y, w and h
+*           is inside active drawing area or not.
 *
 * \param    x
 *               Rectangle initial X offset.
@@ -260,7 +265,7 @@ bool GfxIsInsideScreenArea(const short x, const short y, const short w, const sh
     return false;
 }
 
-/*******************************************************************//***
+/*******************************************************************//**
 *
 * \brief    Indicates whether a tSprite instance is inside active
 *           drawing environment area.
@@ -281,13 +286,13 @@ bool GfxIsSpriteInsideScreenArea(const GsSprite* const psSpr)
     return GfxIsInsideScreenArea(x, y, w, h);
 }
 
-/*******************************************************************//***
+/*******************************************************************//**
 *
 * \brief    Extracting information from tSprite instance, this
 *           function adds a low-level GsSprite structure into
 *           internal primitive list if inside drawing environment area.
 *
-* \param    eSprIndex
+* \param    psSpr
 *               Index of low-level sprite structure inside
 *               internal array.
 *
@@ -312,7 +317,7 @@ void GfxSortSprite(const GsSprite* const psSpr)
     }
 }
 
-/*******************************************************************//***
+/*******************************************************************//**
 *
 * \brief    Processes big sprites (e.g.: more than 256 px wide) by
 *           drawing two separate primitives.
@@ -364,7 +369,7 @@ static void GfxSortBigSprite(GsSprite* const psSpr)
     psSpr->x = aux_x;
 }
 
-/*******************************************************************//***
+/*******************************************************************//**
 *
 * \brief    Initialization of PSX low-level drawing environment.
 *
@@ -388,7 +393,7 @@ static void GfxInitDrawEnv(void)
     GsSetDrawEnv(&sDrawEnv);
 }
 
-/*******************************************************************//***
+/*******************************************************************//**
 *
 * \brief    Initialization of PSX low-level display environment.
 *
@@ -409,7 +414,42 @@ static void GfxInitDispEnv(void)
     GsSetDispEnv(&sDispEnv);
 }
 
-/*******************************************************************//***
+/*******************************************************************//**
+*
+* \brief    This function sets a pointer to a buffer which holds
+*           low-level primitive data, and performs double buffering
+*           so a secondary buffer can be used to calculate the new scene.
+*
+************************************************************************/
+static void GfxSetPrimList(void)
+{
+    enum
+    {
+        /* Maximum amount of each low-level primitive data buffer. */
+        PRIMITIVE_LIST_SIZE = 0x400
+    };
+
+    /* Buffer that will hold all primitive low-level data. */
+    static uint32_t au32PrimList1[PRIMITIVE_LIST_SIZE];
+
+    /* Secondary buffer with the same purpose as au32PrimList1. */
+    static uint32_t au32PrimList2[PRIMITIVE_LIST_SIZE];
+
+    /* This flag is reversed each time this function is called,
+     * so that only one buffer is used at a time. */
+    static bool bPrimListUsed;
+
+    /* Select buffer depending on bPrimListUsed. */
+    uint32_t* const pu32PrimList = bPrimListUsed ? au32PrimList1 : au32PrimList2;
+
+    /* Set Primitive List. */
+    GsSetList(pu32PrimList);
+
+    /* Invert bPrimListUsed state. */
+    bPrimListUsed = bPrimListUsed ? true : false;
+}
+
+/*******************************************************************//**
 *
 * \brief    Performs double buffering.
 *
@@ -443,7 +483,7 @@ static void GfxSwapBuffers(void)
     GsSetDrawEnv(&sDrawEnv);
 }
 
-/*******************************************************************//***
+/*******************************************************************//**
 *
 * \brief    This function is executed on VSYNC event.
 *
