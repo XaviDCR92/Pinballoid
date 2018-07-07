@@ -54,7 +54,7 @@ void SystemInit(void)
 {
     enum
     {
-        INVALID_TCB = 0xFFFFFFFF
+        INVALID_TCB = 0xFFFFFFFFul
     };
 
     /* Initialize PSXSDK libs. */
@@ -63,25 +63,28 @@ void SystemInit(void)
     /* Initialize Gfx module. */
     GfxInit();
 
-    unsigned int result;
+    printf("TCB address = 0x%08X\n", *(unsigned int*)0x110);
+    printf("TCB size = %d\n", *(unsigned int*)0x114);
+    printf("Used TCB = 0x%08X\n", **(unsigned int**)0x110);
 
     /* Disable interrupts while thread is initialized. */
     EnterCriticalSection();
 
     printf("gp = 0x%08X\n", GetGP());
 
-    //~ result = OpenThread((unsigned int)&Thread2, 0x801FFB00, GetGP());
-    result = OpenThread((unsigned int)&Thread2, 0x801FFB00, GetGP());
-
-    if (result == 0xFFFFFFFF)
     {
-        /* Something went wrong when initializing the thread. */
+        //~ result = OpenThread((unsigned int)&Thread2, 0x801FFB00, GetGP());
+        const unsigned int result = OpenThread((unsigned int)&Thread2, 0x801FFB00, GetGP());
+
+        if (result == INVALID_TCB)
+        {
+            /* Something went wrong when initializing the thread. */
+        }
+
     }
 
     /* Re-enable interrupts. */
     ExitCriticalSection();
-
-    printf("result = 0x%08X\n", result);
 
     /* Initialize Timers module. */
     TimersInit();
@@ -91,6 +94,6 @@ static void Thread2(void)
 {
     while (1)
     {
-        printf("Yo!\n");
+        //~printf("Yo!\n");
     }
 }
