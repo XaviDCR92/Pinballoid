@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['game',['Game',['../_game_8c.html#a2e84fc568e3c82764b7f9095c59952f4',1,'Game(void):&#160;Game.c'],['../_game_8h.html#a2e84fc568e3c82764b7f9095c59952f4',1,'Game(void):&#160;Game.c']]],
+  ['gamestart',['GameStart',['../_game_8c.html#a084b7c13ad496ec6802c6f45a57078a2',1,'Game.c']]],
   ['gfxdrawscene',['GfxDrawScene',['../_gfx_8c.html#a299be2a90b2afdd1850fee728835acb6',1,'GfxDrawScene(void):&#160;Gfx.c'],['../_gfx_8h.html#a299be2a90b2afdd1850fee728835acb6',1,'GfxDrawScene(void):&#160;Gfx.c']]],
   ['gfxinit',['GfxInit',['../_gfx_8c.html#a7fab7441831717fd86a09edb84e866e2',1,'GfxInit(void):&#160;Gfx.c'],['../_gfx_8h.html#a7fab7441831717fd86a09edb84e866e2',1,'GfxInit(void):&#160;Gfx.c']]],
   ['gfxinitdispenv',['GfxInitDispEnv',['../_gfx_8c.html#a5752aa8fbeb2fd3a8423a25ff03f5a16',1,'Gfx.c']]],

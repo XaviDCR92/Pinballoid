@@ -63,7 +63,8 @@
 * \return   Address to a read-only buffer with file data if successful,
 *           NULL pointer otherwise.
 *
-* \return   peSize is assigned to actual file size in bytes
+* \return   peSize
+*  is assigned to actual file size in bytes
 *           if successful, IO_INVALID_FILE_SIZE otherwise.
 *
 ************************************************************************/
@@ -155,3 +156,17 @@ const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const peSize)
     /* Return failure code if this was reached. */
     return NULL;
 }
+
+#if 0
+{
+    struct CdFileInfo finfo;
+    /* […init…] */
+
+    if(CdFsFindFile(&bundleinfo, "FILE.EXT;1") == false)
+    {
+        /* [error handling] */
+    }
+
+    CdRead(buffer, no_of_sectors, finfo.lba+(2*5), CdlModeSpeed); CdReadSync(0);
+}
+#endif /* 0 */

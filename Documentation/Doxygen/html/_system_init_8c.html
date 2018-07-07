@@ -89,11 +89,16 @@ $(document).ready(function(){initNavTree('_system_init_8c.html','');});
 <div class="textblock"><code>#include &quot;<a class="el" href="_gfx_8h_source.html">Gfx.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_timers_8h_source.html">Timers.h</a>&quot;</code><br />
 <code>#include &lt;psx.h&gt;</code><br />
+<code>#include &lt;thread.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
 </div>
 <p><a href="_system_init_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a907fe2114c107b6c0e93fd6504506880"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_system_init_8c.html#a907fe2114c107b6c0e93fd6504506880">Thread2</a> (void)</td></tr>
+<tr class="separator:a907fe2114c107b6c0e93fd6504506880"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93f514700ccf00d08dbdcff7f1224eb2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_system_init_8c.html#a93f514700ccf00d08dbdcff7f1224eb2">SystemInit</a> (void)</td></tr>
 <tr class="separator:a93f514700ccf00d08dbdcff7f1224eb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -114,10 +119,39 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_system_init_8c_source.html#l00048">48</a> of file <a class="el" href="_system_init_8c_source.html">SystemInit.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">/* Initialize PSXSDK libs. */</span></div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    PSX_InitEx(PSX_INIT_SAVESTATE | PSX_INIT_CD);</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">/* Initialize Gfx module. */</span></div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="_gfx_8c.html#a7fab7441831717fd86a09edb84e866e2">GfxInit</a>();</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">/* Initialize Timers module. */</span></div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="_timers_8c.html#ac2d2ba08084a5f1383665bdb6c860c40">TimersInit</a>();</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div><div class="ttc" id="_timers_8c_html_ac2d2ba08084a5f1383665bdb6c860c40"><div class="ttname"><a href="_timers_8c.html#ac2d2ba08084a5f1383665bdb6c860c40">TimersInit</a></div><div class="ttdeci">void TimersInit(void)</div><div class="ttdoc">Timers module initialization. </div><div class="ttdef"><b>Definition:</b> <a href="_timers_8c_source.html#l00051">Timers.c:51</a></div></div>
+<p class="definition">Definition at line <a class="el" href="_system_init_8c_source.html#l00053">53</a> of file <a class="el" href="_system_init_8c_source.html">SystemInit.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;{</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">enum</span></div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    {</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        INVALID_TCB = 0xFFFFFFFF</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    };</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">/* Initialize PSXSDK libs. */</span></div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    PSX_InitEx(PSX_INIT_SAVESTATE | PSX_INIT_CD);</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">/* Initialize Gfx module. */</span></div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="_gfx_8c.html#a7fab7441831717fd86a09edb84e866e2">GfxInit</a>();</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> result;</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">/* Disable interrupts while thread is initialized. */</span></div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    EnterCriticalSection();</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    printf(<span class="stringliteral">&quot;gp = 0x%08X\n&quot;</span>, GetGP());</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">//~ result = OpenThread((unsigned int)&amp;Thread2, 0x801FFB00, GetGP());</span></div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    result = OpenThread((<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)&amp;<a class="code" href="_system_init_8c.html#a907fe2114c107b6c0e93fd6504506880">Thread2</a>, 0x801FFB00, GetGP());</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">if</span> (result == 0xFFFFFFFF)</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    {</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="comment">/* Something went wrong when initializing the thread. */</span></div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">/* Re-enable interrupts. */</span></div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    ExitCriticalSection();</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    printf(<span class="stringliteral">&quot;result = 0x%08X\n&quot;</span>, result);</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="comment">/* Initialize Timers module. */</span></div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="_timers_8c.html#ac2d2ba08084a5f1383665bdb6c860c40">TimersInit</a>();</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div><div class="ttc" id="_timers_8c_html_ac2d2ba08084a5f1383665bdb6c860c40"><div class="ttname"><a href="_timers_8c.html#ac2d2ba08084a5f1383665bdb6c860c40">TimersInit</a></div><div class="ttdeci">void TimersInit(void)</div><div class="ttdoc">Timers module initialization. </div><div class="ttdef"><b>Definition:</b> <a href="_timers_8c_source.html#l00054">Timers.c:54</a></div></div>
+<div class="ttc" id="_system_init_8c_html_a907fe2114c107b6c0e93fd6504506880"><div class="ttname"><a href="_system_init_8c.html#a907fe2114c107b6c0e93fd6504506880">Thread2</a></div><div class="ttdeci">static void Thread2(void)</div><div class="ttdef"><b>Definition:</b> <a href="_system_init_8c_source.html#l00090">SystemInit.c:90</a></div></div>
 <div class="ttc" id="_gfx_8c_html_a7fab7441831717fd86a09edb84e866e2"><div class="ttname"><a href="_gfx_8c.html#a7fab7441831717fd86a09edb84e866e2">GfxInit</a></div><div class="ttdeci">void GfxInit(void)</div><div class="ttdoc">Initialization of Gfx module. </div><div class="ttdef"><b>Definition:</b> <a href="_gfx_8c_source.html#l00089">Gfx.c:89</a></div></div>
 </div><!-- fragment -->
+</div>
+</div>
+<a id="a907fe2114c107b6c0e93fd6504506880"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a907fe2114c107b6c0e93fd6504506880">&#9670;&nbsp;</a></span>Thread2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Thread2 </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_system_init_8c_source.html#l00090">90</a> of file <a class="el" href="_system_init_8c_source.html">SystemInit.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;{</div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">while</span> (1)</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    {</div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        printf(<span class="stringliteral">&quot;Yo!\n&quot;</span>);</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;}</div></div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

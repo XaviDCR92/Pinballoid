@@ -3,11 +3,20 @@
 
 /*******************************************************************//**
 *
-* @file     Gfx.h
+* \file     Gfx.h
 *
-* @author   Xavier Del Campo
+* \author   Xavier Del Campo
 *
-* @brief    Include file for Gfx module.
+* \brief    Include file for Gfx module.
+*
+************************************************************************/
+
+/*******************************************************************//**
+*
+* \defgroup GFX   Gfx
+*
+*           This module provides high-level interaction with primitives
+*           and PSX graphics sinthetizer (GPU).
 *
 ************************************************************************/
 
@@ -48,5 +57,7 @@ bool GfxSpriteFromFile(const char* const strFilePath, GsSprite* const pSpr);
 void GfxSortSprite(const GsSprite* const psSpr);
 bool GfxIsInsideScreenArea(const short x, const short y, const short w, const short h);
 void GfxDrawScene(void);
+
+/** \} */
 
 #endif /* GFX_H__ */

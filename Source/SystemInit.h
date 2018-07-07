@@ -3,11 +3,11 @@
 
 /*******************************************************************//***
 *
-* @file     SystemInit.h
+* \file     SystemInit.h
 *
-* @author   Xavier Del Campo
+* \author   Xavier Del Campo
 *
-* @brief    Include file for SystemInit module.
+* \brief    Include file for SystemInit module.
 *
 ************************************************************************/
 

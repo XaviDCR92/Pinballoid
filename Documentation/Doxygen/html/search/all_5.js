@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['timers_2ec',['Timers.c',['../_timers_8c.html',1,'']]],
-  ['timers_2eh',['Timers.h',['../_timers_8h.html',1,'']]],
-  ['timersinit',['TimersInit',['../_timers_8c.html#ac2d2ba08084a5f1383665bdb6c860c40',1,'TimersInit(void):&#160;Timers.c'],['../_timers_8h.html#ac2d2ba08084a5f1383665bdb6c860c40',1,'TimersInit(void):&#160;Timers.c']]],
-  ['tintsource',['tIntSource',['../_interrupts_8h.html#a866e7746dfa1b3935548017052277226',1,'Interrupts.h']]]
+  ['sdispenv',['sDispEnv',['../_gfx_8c.html#af0fb7d0e979d92a1ad0c5f2a04722412',1,'Gfx.c']]],
+  ['sdrawenv',['sDrawEnv',['../_gfx_8c.html#abb76f0115d46d74894915a38e0f29498',1,'Gfx.c']]],
+  ['sprite_5findex_5finvalid',['SPRITE_INDEX_INVALID',['../_gfx_8h.html#a19e44c46f496184190f539b8b134086b',1,'Gfx.h']]],
+  ['systeminit',['SystemInit',['../_system_init_8c.html#a93f514700ccf00d08dbdcff7f1224eb2',1,'SystemInit(void):&#160;SystemInit.c'],['../_system_init_8h.html#a93f514700ccf00d08dbdcff7f1224eb2',1,'SystemInit(void):&#160;SystemInit.c']]],
+  ['systeminit_2ec',['SystemInit.c',['../_system_init_8c.html',1,'']]],
+  ['systeminit_2eh',['SystemInit.h',['../_system_init_8h.html',1,'']]]
 ];

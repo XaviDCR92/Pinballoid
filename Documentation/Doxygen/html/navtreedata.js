@@ -1,6 +1,7 @@
 var NAVTREE =
 [
   [ "Pinballoid", "index.html", [
+    [ "Modules", "modules.html", "modules" ],
     [ "Files", null, [
       [ "File List", "files.html", "files" ],
       [ "Globals", "globals.html", [
@@ -17,7 +18,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_gfx_8c.html"
+"_game_8c.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

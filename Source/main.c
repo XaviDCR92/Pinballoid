@@ -1,8 +1,8 @@
 /*******************************************************************//**
 *
-* @file     main.c
+* \file     main.c
 *
-* @brief    Application entry point.
+* \brief    Application entry point.
 *
 ************************************************************************/
 
@@ -11,6 +11,7 @@
  * *************************************/
 
 #include "SystemInit.h"
+#include "Game.h"
 
 /* *************************************
  * Defines
@@ -48,9 +49,11 @@ int main(void)
     /* Initialize game libs and HW. */
     SystemInit();
 
+    /* Main loop. */
     for (;;)
     {
-        /* Main loop. */
+        /* Execute game. */
+        Game();
     }
 
     return 0;

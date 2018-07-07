@@ -13,9 +13,12 @@
  * *************************************/
 
 #include "Interrupts.h"
+#include "ThreadHandler.h"
 #include <psx.h>
 #include <stdint.h>
 #include <stddef.h>
+#include <thread.h>
+#include <stdio.h>
 
 /* *************************************
  * Defines
@@ -64,6 +67,8 @@ void TimersInit(void)
      * compare value to root counter 2. */
     SetRCntHandler(&ISR_RootCounter2, RCNT2_INDEX, RCNT2_COMPARE_VALUE);
 
+    ChangeThread(0xFF000001);
+
     /* Enable RCnt2 interrupt. */
     InterruptsEnableInt(INT_SOURCE_RCNT2);
 }
@@ -83,4 +88,15 @@ void TimersInit(void)
 ************************************************************************/
 static void ISR_RootCounter2(void)
 {
+    static uint8_t counter;
+
+    if (++counter & 1)
+    {
+        ChangeThread(0xFF000001);
+    }
+    else
+    {
+        ChangeThread(0xFF000000);
+    }
 }
+

@@ -13,7 +13,7 @@
  * *************************************/
 
 #include "Interrupts.h"
-#include <stdio.h>
+#include <psx.h>
 #include <stdint.h>
 #include <stddef.h>
 
@@ -81,7 +81,14 @@ void InterruptsEnableInt(const enum tIntSource eIntSource)
 {
     if (eIntSource < MAX_INTERRUPT_SOURCES)
     {
+        /* Disable interrupts while I_MASK is modified. */
+        EnterCriticalSection();
+
+        /* Set bit for selected interrupt source. */
         I_MASK |= 1 << eIntSource;
+
+        /* Re-enable interrupts. */
+        ExitCriticalSection();
     }
     else
     {
@@ -103,7 +110,14 @@ void InterruptsDisableInt(const enum tIntSource eIntSource)
 {
     if (eIntSource < MAX_INTERRUPT_SOURCES)
     {
+        /* Disable interrupts while I_MASK is modified. */
+        EnterCriticalSection();
+
+        /* Remove bit for selected interrupt source. */
         I_MASK &= ~(1 << eIntSource);
+
+        /* Re-enable interrupts while I_MASK is modified. */
+        ExitCriticalSection();
     }
     else
     {
