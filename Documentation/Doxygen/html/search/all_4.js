@@ -5,6 +5,7 @@ var searchData=
   ['max_5finterrupt_5fsources',['MAX_INTERRUPT_SOURCES',['../_interrupts_8h.html#a866e7746dfa1b3935548017052277226a161d1bb7b3e1841c41fafcdddcbea4d9',1,'Interrupts.h']]],
   ['max_5flevels',['MAX_LEVELS',['../_game_8h.html#a3aef9486ead21bdcea2968c3540ccbd5ae584d293ed8897df65268198eaf1388a',1,'Game.h']]],
   ['max_5fsize_5ffor_5fgssprite',['MAX_SIZE_FOR_GSSPRITE',['../_gfx_8c.html#a936466f5b81ac511dc91604521f828e5',1,'Gfx.c']]],
+  ['max_5ftot_5fblocks',['MAX_TOT_BLOCKS',['../_threads_8c.html#a6aa6895269ad102e25045823a89948fca0870ae5af0b3160214f96a89b7191cda',1,'Threads.c']]],
   ['menu',['Menu',['../_menu_8c.html#a39b33a107c81f55dccc6ed97097f275b',1,'Menu(void):&#160;Menu.c'],['../_menu_8h.html#a39b33a107c81f55dccc6ed97097f275b',1,'Menu(void):&#160;Menu.c']]],
   ['menu_2ec',['Menu.c',['../_menu_8c.html',1,'']]],
   ['menu_2eh',['Menu.h',['../_menu_8h.html',1,'']]],

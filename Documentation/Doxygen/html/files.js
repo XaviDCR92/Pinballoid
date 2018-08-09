@@ -13,7 +13,8 @@ var files =
     [ "Menu.h", "_menu_8h.html", "_menu_8h" ],
     [ "SystemInit.c", "_system_init_8c.html", "_system_init_8c" ],
     [ "SystemInit.h", "_system_init_8h.html", "_system_init_8h" ],
-    [ "ThreadHandler.h", "_thread_handler_8h.html", "_thread_handler_8h" ],
+    [ "Threads.c", "_threads_8c.html", "_threads_8c" ],
+    [ "Threads.h", "_threads_8h.html", "_threads_8h" ],
     [ "Timers.c", "_timers_8c.html", "_timers_8c" ],
     [ "Timers.h", "_timers_8h.html", "_timers_8h" ]
 ];
