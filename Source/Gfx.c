@@ -19,6 +19,8 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
+#include <thread.h>
+#include <stdio.h>
 
 /* *************************************
  * Defines
@@ -495,6 +497,17 @@ static void GfxSwapBuffers(void)
 ************************************************************************/
 static void ISR_VBlank(void)
 {
+    static bool bState;
     /* Set VSYNC flag. */
     bSyncFlag = true;
+
+    if ((bState = !bState))
+    {
+        void* const pSubThreadTCB = (*(unsigned int**)0x110) + (0xC0 / sizeof (void*));
+        **(unsigned int**)0x108 = (unsigned int)pSubThreadTCB;
+    }
+    else
+    {
+        **(unsigned int**)0x108 = *(unsigned int*)0x110;
+    }
 }

@@ -49,7 +49,7 @@ EMULATOR_FLAGS = -nogui -psxout
 OBJ_DIR = Obj
 SRC_DIR = .
 OBJECTS = $(addprefix $(OBJ_DIR)/,	main.o Gfx.o Interrupts.o IO.o Timers.o SystemInit.o	\
-									Menu.o Game.o ThreadHandler.o)
+									Menu.o Game.o Threads.o)
 
 # Source dependencies:
 DEPS = $(OBJECTS:.o=.d)

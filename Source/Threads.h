@@ -3,17 +3,19 @@
 
 /*******************************************************************//**
 *
-* \file     ThreadHandler.h
+* \file     Threads.h
 *
 * \author   Xavier Del Campo
 *
-* \brief    Include file for ThreadHandler module.
+* \brief    Include file for Threads module.
 *
 ************************************************************************/
 
 /* *************************************
  * Includes
  * *************************************/
+
+#include <stdbool.h>
 
 /* *************************************
  * Defines
@@ -31,6 +33,6 @@
  * Public functions declaration
  * *************************************/
 
-void ThreadHandler(void);
+bool ThreadsCreate(void (*const pThreadHandler)(void));
 
 #endif /* THREAD_HANDLER_H__ */
