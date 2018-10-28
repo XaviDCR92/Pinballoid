@@ -1,5 +1,5 @@
-#ifndef MENU_H__
-#define MENU_H__
+#ifndef MENU_H
+#define MENU_H
 
 /*******************************************************************//**
 *
@@ -16,6 +16,7 @@
  * *************************************/
 
 #include "Game.h"
+#include <stddef.h>
 
 /* *************************************
  * Defines
@@ -25,16 +26,6 @@
  * Public types definition
  * *************************************/
 
-
-/*******************************************************************//**
-*
-* \file     Menu.h
-*
-* \author   Xavier Del Campo
-*
-* \brief    Include file for Menu module.
-*
-************************************************************************/
 enum tMenuResult
 {
     MENU_RESULT_UNDEFINED,
@@ -52,5 +43,6 @@ enum tMenuResult
 
 enum tMenuResult Menu(void);
 enum tLevel MenuGetSelectedLevel(void);
+size_t MenuGetSelectedPlayers(void);
 
-#endif /* MENU_H__ */
+#endif /* MENU_H */

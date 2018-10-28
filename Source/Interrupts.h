@@ -1,5 +1,5 @@
-#ifndef INTERRUPTS_H__
-#define INTERRUPTS_H__
+#ifndef INTERRUPTS_H
+#define INTERRUPTS_H
 
 /*******************************************************************//**
 *
@@ -56,4 +56,4 @@ enum tIntSource
 void InterruptsEnableInt(const enum tIntSource eIntSource);
 void InterruptsDisableInt(const enum tIntSource eIntSource);
 
-#endif /* INTERRUPTS_H__ */
+#endif /* INTERRUPTS_H */

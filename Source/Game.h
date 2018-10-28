@@ -1,5 +1,5 @@
-#ifndef GAME_H__
-#define GAME_H__
+#ifndef GAME_H
+#define GAME_H
 
 /*******************************************************************//**
 *
@@ -25,7 +25,7 @@
 
 enum tLevel
 {
-    LEVEL1,
+    LEVEL_1,
 
     MAX_LEVELS,
     LEVEL_UNDEFINED = MAX_LEVELS
@@ -41,4 +41,4 @@ enum tLevel
 
 void Game(void);
 
-#endif /* GAME_H__ */
+#endif /* GAME_H */

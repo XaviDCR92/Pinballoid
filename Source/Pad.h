@@ -1,13 +1,13 @@
-#ifndef IO_H
-#define IO_H
+#ifndef PAD_H
+#define PAD_H
 
 /*******************************************************************//**
 *
-* \file     IO.h
+* @file     Pad.h
 *
-* \author   Xavier Del Campo
+* @author   Xavier Del Campo
 *
-* \brief    Include file for IO module.
+* @brief    Include file for Pad module.
 *
 ************************************************************************/
 
@@ -15,18 +15,35 @@
  * Includes
  * *************************************/
 
-#include <stdint.h>
-#include <stddef.h>
+#include "Player.h"
 
 /* *************************************
  * Defines
  * *************************************/
 
-#define IO_INVALID_FILE_SIZE    (size_t)(-1)
-
 /* *************************************
  * Public types definition
  * *************************************/
+
+enum Key
+{
+    KEY_L2,
+    KEY_R2,
+    KEY_L1,
+    KEY_R1,
+    KEY_TRIANGE,
+    KEY_CIRCLE,
+    KEY_CROSS,
+    KEY_SQUARE,
+    KEY_SELECT,
+    KEY_LANALOGB,
+    KEY_RANALOGB,
+    KEY_START,
+    KEY_UP,
+    KEY_RIGHT,
+    KEY_DOWN,
+    KEY_LEFT
+};
 
 /* *************************************
  * Public variables declaration
@@ -36,6 +53,6 @@
  * Public functions declaration
  * *************************************/
 
-const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const peSize);
+bool PadKeyPressed(const enum Key key, const enum Player player);
 
-#endif /* IO_H */
+#endif /* PAD_H */

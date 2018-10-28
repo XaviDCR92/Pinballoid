@@ -1,13 +1,13 @@
-#ifndef IO_H
-#define IO_H
+#ifndef PLAYER_H
+#define PLAYER_H
 
 /*******************************************************************//**
 *
-* \file     IO.h
+* \file     Player.h
 *
 * \author   Xavier Del Campo
 *
-* \brief    Include file for IO module.
+* \brief    Include file for Player module.
 *
 ************************************************************************/
 
@@ -15,18 +15,23 @@
  * Includes
  * *************************************/
 
-#include <stdint.h>
-#include <stddef.h>
-
 /* *************************************
  * Defines
  * *************************************/
 
-#define IO_INVALID_FILE_SIZE    (size_t)(-1)
-
 /* *************************************
  * Public types definition
  * *************************************/
+
+enum Player
+{
+    PLAYER_0,
+    PLAYER_1,
+    PLAYER_2,
+    PLAYER_3,
+
+    MAX_PLAYERS
+};
 
 /* *************************************
  * Public variables declaration
@@ -36,6 +41,6 @@
  * Public functions declaration
  * *************************************/
 
-const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const peSize);
+void PlayerInit(void);
 
-#endif /* IO_H */
+#endif /* PLAYER_H */

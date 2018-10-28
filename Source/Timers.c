@@ -23,6 +23,12 @@
  * Defines
  * *************************************/
 
+#define TIMER_COUNTER(t)    (((volatile const struct               \
+                            {                                       \
+                               unsigned int counter :16;            \
+                               unsigned int :16;                    \
+                            }*)0x1F801100 + (t * 0x10))->counter)
+
 /* *************************************
  * Types definition
  * *************************************/
@@ -85,15 +91,14 @@ void TimersInit(void)
 ************************************************************************/
 static void ISR_RootCounter2(void)
 {
-    //~static uint8_t counter;
-
-    //~if (++counter & 1)
-    //~{
-        //~ChangeThread(0xFF000001);
-    //~}
-    //~else
-    //~{
-        //~ChangeThread(0xFF000000);
-    //~}
 }
 
+unsigned int RootCounter1Get(void)
+{
+    return TIMER_COUNTER(1);
+}
+
+unsigned int RootCounter2Get(void)
+{
+    return TIMER_COUNTER(2);
+}

@@ -1,5 +1,5 @@
-#ifndef THREAD_HANDLER_H__
-#define THREAD_HANDLER_H__
+#ifndef THREAD_HANDLER_H
+#define THREAD_HANDLER_H
 
 /*******************************************************************//**
 *
@@ -35,4 +35,4 @@
 
 bool ThreadsCreate(void (*const pThreadHandler)(void));
 
-#endif /* THREAD_HANDLER_H__ */
+#endif /* THREAD_HANDLER_H */

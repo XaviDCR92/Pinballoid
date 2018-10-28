@@ -1,13 +1,13 @@
-#ifndef IO_H
-#define IO_H
+#ifndef PADDLE_H
+#define PADDLE_H
 
 /*******************************************************************//**
 *
-* \file     IO.h
+* @file     Paddle.h
 *
-* \author   Xavier Del Campo
+* @author   Xavier Del Campo
 *
-* \brief    Include file for IO module.
+* @brief    Include file for Paddle module.
 *
 ************************************************************************/
 
@@ -15,14 +15,11 @@
  * Includes
  * *************************************/
 
-#include <stdint.h>
 #include <stddef.h>
 
 /* *************************************
  * Defines
  * *************************************/
-
-#define IO_INVALID_FILE_SIZE    (size_t)(-1)
 
 /* *************************************
  * Public types definition
@@ -36,6 +33,6 @@
  * Public functions declaration
  * *************************************/
 
-const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const peSize);
+void PaddleInit(const size_t players);
 
-#endif /* IO_H */
+#endif /* PADDLE_H */

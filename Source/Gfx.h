@@ -1,5 +1,5 @@
-#ifndef GFX_H__
-#define GFX_H__
+#ifndef GFX_H
+#define GFX_H
 
 /*******************************************************************//**
 *
@@ -60,4 +60,4 @@ void GfxDrawScene(void);
 
 /** \} */
 
-#endif /* GFX_H__ */
+#endif /* GFX_H */

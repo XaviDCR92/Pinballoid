@@ -497,9 +497,11 @@ static void GfxSwapBuffers(void)
 ************************************************************************/
 static void ISR_VBlank(void)
 {
-    static bool bState;
     /* Set VSYNC flag. */
     bSyncFlag = true;
+
+#if 0
+    static bool bState;
 
     if ((bState = !bState))
     {
@@ -510,4 +512,5 @@ static void ISR_VBlank(void)
     {
         **(unsigned int**)0x108 = *(unsigned int*)0x110;
     }
+#endif /* 0 */
 }

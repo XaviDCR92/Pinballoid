@@ -1,5 +1,5 @@
-#ifndef SYSTEMINIT_H__
-#define SYSTEMINIT_H__
+#ifndef SYSTEMINIT_H
+#define SYSTEMINIT_H
 
 /*******************************************************************//***
 *
@@ -33,4 +33,4 @@
 
 void SystemInit(void);
 
-#endif /* SYSTEMINIT_H__ */
+#endif /* SYSTEMINIT_H */

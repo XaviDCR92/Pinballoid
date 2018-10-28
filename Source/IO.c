@@ -52,8 +52,8 @@
 *           by external modules.
 *
 * \param    strFilePath
-*               Absolute file path e.g.:
-*               "cdrom:\\DATA\\SPRITES\\TILESET1.TIM;1".
+*               Relative file path e.g.:
+*               "DATA\\SPRITES\\TILESET1.TIM".
 *
 * \param    peSize
 *               Pointer to size_t variable where file size will
@@ -70,60 +70,82 @@
 ************************************************************************/
 const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const peSize)
 {
-    /* Get file data from input file path. */
-    FILE* const pFile = fopen(strFilePath, "r");
-
-    if (pFile != NULL)
+    if (strFilePath)
     {
-        /* File could be found successfully. */
+        /* This buffer shall be used to concatenate "cdrom:\\"
+         * and ";1" substrings along with indicated file path. */
+        static char buffer[128];
 
-        /* Move file pointer to end of file. */
-        if (fseek(pFile, 0, SEEK_END) == 0 /* Success code. */)
+        /* Create absolute file path from indicated path. */
+        snprintf(buffer, sizeof (buffer), "cdrom:\\%s;1", strFilePath);
+
         {
-            enum
+            /* Get file data from input file path. */
+            FILE* const pFile = fopen(strFilePath, "r");
+
+            if (pFile != NULL)
             {
-                /* Reserve 128 kB for file data.
-                 * This is more than enough for a
-                 * 384 px * 240 px * 2 byte/px = 120 kB image. */
-                FILE_BUFFER_SIZE = (128 << 10)
-            };
+                /* File could be found successfully. */
 
-            /* File pointer could be successfully
-             * moved to the new position. */
-
-            /* Return file size in bytes to upper layers. */
-            *peSize = ftell(pFile);
-
-            if (*peSize >= FILE_BUFFER_SIZE)
-            {
-                /* Buffer was successfully allocated according
-                 * to file size. Now read file data into buffer. */
-
-                /* Reset file pointer iterator position first. */
-                if (fseek(pFile, 0, SEEK_SET) == 0 /* Sucess code. */)
+                /* Move file pointer to end of file. */
+                if (fseek(pFile, 0, SEEK_END) == 0 /* Success code. */)
                 {
-                    /* This buffer holds file data read from CD-ROM.
-                     * It is cleared out on each call to IOLoadFile(),
-                     * so copy its contents into an auxilar buffer if needed. */
-                    static uint8_t au8FileBuffer[FILE_BUFFER_SIZE];
-
-                    /* Read file data into newly allocated buffer. */
-                    const size_t eReadBytes = fread(au8FileBuffer, sizeof (uint8_t), FILE_BUFFER_SIZE, pFile);
-
-                    /* Close input opened file first. */
-                    fclose(pFile);
-
-                    if (eReadBytes == *peSize)
+                    enum
                     {
-                        /* All bytes could be read from input file successfully. */
+                        /* Reserve 128 kB for file data.
+                         * This is more than enough for a
+                         * 384 px * 240 px * 2 byte/px = 120 kB image. */
+                        FILE_BUFFER_SIZE = (128 << 10)
+                    };
 
-                        /* Finally, return address to buffer so it can be
-                         * used by external modules. */
-                        return au8FileBuffer;
+                    /* File pointer could be successfully
+                     * moved to the new position. */
+
+                    /* Return file size in bytes to upper layers. */
+                    *peSize = ftell(pFile);
+
+                    if (*peSize >= FILE_BUFFER_SIZE)
+                    {
+                        /* Buffer was successfully allocated according
+                         * to file size. Now read file data into buffer. */
+
+                        /* Reset file pointer iterator position first. */
+                        if (fseek(pFile, 0, SEEK_SET) == 0 /* Sucess code. */)
+                        {
+                            /* This buffer holds file data read from CD-ROM.
+                             * It is cleared out on each call to IOLoadFile(),
+                             * so copy its contents into an auxilar buffer if needed. */
+                            static uint8_t au8FileBuffer[FILE_BUFFER_SIZE];
+
+                            /* Read file data into newly allocated buffer. */
+                            const size_t eReadBytes = fread(au8FileBuffer, sizeof (uint8_t), FILE_BUFFER_SIZE, pFile);
+
+                            /* Close input opened file first. */
+                            fclose(pFile);
+
+                            if (eReadBytes == *peSize)
+                            {
+                                /* All bytes could be read from input file successfully. */
+
+                                /* Finally, return address to buffer so it can be
+                                 * used by external modules. */
+                                return au8FileBuffer;
+                            }
+                            else
+                            {
+                                /* Not all bytes from file were read.
+                                 * Fall through. */
+                            }
+                        }
+                        else
+                        {
+                            /* Something went wrong with fseek().
+                             * Fall through. */
+                        }
                     }
                     else
                     {
-                        /* Not all bytes from file were read.
+                        /* Buffer cannot hold such amount of data.
                          * Fall through. */
                     }
                 }
@@ -135,19 +157,13 @@ const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const peSize)
             }
             else
             {
-                /* Buffer cannot hold such amount of data.
-                 * Fall through. */
+                /* File does not exist. Fall through. */
             }
-        }
-        else
-        {
-            /* Something went wrong with fseek().
-             * Fall through. */
         }
     }
     else
     {
-        /* File does not exist. Fall through. */
+        /* Invalid pointer to file path. */
     }
 
     /* Set file size to an invalid value. */

@@ -1,13 +1,13 @@
-#ifndef IO_H
-#define IO_H
+#ifndef LEVEL_H
+#define LEVEL_H
 
 /*******************************************************************//**
 *
-* \file     IO.h
+* \file     Level.h
 *
 * \author   Xavier Del Campo
 *
-* \brief    Include file for IO module.
+* \brief    Include file for Level module.
 *
 ************************************************************************/
 
@@ -15,18 +15,21 @@
  * Includes
  * *************************************/
 
-#include <stdint.h>
-#include <stddef.h>
-
 /* *************************************
  * Defines
  * *************************************/
 
-#define IO_INVALID_FILE_SIZE    (size_t)(-1)
-
 /* *************************************
  * Public types definition
  * *************************************/
+
+enum
+{
+    LEVEL_X = 240,
+    LEVEL_Y = LEVEL_X,
+    WALL_THICKNESS = 8,
+    WALL_GAP = 16
+};
 
 /* *************************************
  * Public variables declaration
@@ -36,6 +39,4 @@
  * Public functions declaration
  * *************************************/
 
-const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const peSize);
-
-#endif /* IO_H */
+#endif /* LEVEL_H */

@@ -40,8 +40,6 @@ enum tToTBlock
     TOT_BLOCK_FCB,
     TOT_BLOCK_RESERVED_5,
     TOT_BLOCK_DCB,
-
-    MAX_TOT_BLOCKS
 };
 
 struct tToT

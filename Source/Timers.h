@@ -1,5 +1,5 @@
-#ifndef TIMERS_H__
-#define TIMERS_H__
+#ifndef TIMERS_H
+#define TIMERS_H
 
 /*******************************************************************//**
 *
@@ -32,5 +32,7 @@
  * *************************************/
 
 void TimersInit(void);
+unsigned int RootCounter1Get(void);
+unsigned int RootCounter2Get(void);
 
-#endif /* INTERRUPTS_H__ */
+#endif /* TIMERS_H */

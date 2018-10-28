@@ -1,13 +1,8 @@
-#ifndef IO_H
-#define IO_H
-
 /*******************************************************************//**
 *
-* \file     IO.h
+* \file     Level.c
 *
-* \author   Xavier Del Campo
-*
-* \brief    Include file for IO module.
+* \brief    Implementation file for Level module.
 *
 ************************************************************************/
 
@@ -15,27 +10,34 @@
  * Includes
  * *************************************/
 
-#include <stdint.h>
-#include <stddef.h>
+#include "Level.h"
 
 /* *************************************
  * Defines
  * *************************************/
 
-#define IO_INVALID_FILE_SIZE    (size_t)(-1)
-
 /* *************************************
- * Public types definition
+ * Types definition
  * *************************************/
 
 /* *************************************
- * Public variables declaration
+ * Global variables definition
  * *************************************/
 
 /* *************************************
- * Public functions declaration
+ * Local variables definition
  * *************************************/
 
-const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const peSize);
+/* *************************************
+ *  Local prototypes declaration
+ * *************************************/
 
-#endif /* IO_H */
+/* *************************************
+ * Functions definition
+ * *************************************/
+
+/*******************************************************************//**
+*
+* \brief
+*
+************************************************************************/

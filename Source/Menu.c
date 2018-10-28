@@ -35,29 +35,11 @@
  * *************************************/
 
 static bool MenuInit(void);
+static enum tMenuResult MenuLoop(void);
 
 /* *************************************
  * Functions definition
  * *************************************/
-
-/*******************************************************************//**
-*
-* \brief    Game logic entry point.
-*
-************************************************************************/
-enum tMenuResult Menu(void)
-{
-    if (MenuInit() != false)
-    {
-        /* Main menu was initialized successfully. */
-    }
-    else
-    {
-        /* Something went wrong when intializing main menu. */
-    }
-
-    return MENU_RESULT_UNDEFINED;
-}
 
 /*******************************************************************//**
 *
@@ -66,7 +48,37 @@ enum tMenuResult Menu(void)
 ************************************************************************/
 static bool MenuInit(void)
 {
-    return false;
+    return true;
+}
+
+/*******************************************************************//**
+*
+* \brief    Game logic entry point.
+*
+************************************************************************/
+enum tMenuResult Menu(void)
+{
+    if (MenuInit())
+    {
+        return MenuLoop();
+    }
+    else
+    {
+        /* An error has happened while
+         * initialising main menu. */
+    }
+
+    /* This result will be returned in case
+     * menu initialization fails. */
+    return MENU_RESULT_UNDEFINED;
+}
+
+static enum tMenuResult MenuLoop(void)
+{
+    for (;;)
+    {
+        return MENU_RESULT_GAME_START;
+    }
 }
 
 /*******************************************************************//**
@@ -78,5 +90,10 @@ static bool MenuInit(void)
 ************************************************************************/
 enum tLevel MenuGetSelectedLevel(void)
 {
-    return LEVEL_UNDEFINED;
+    return LEVEL_1;
+}
+
+size_t MenuGetSelectedPlayers(void)
+{
+    return 4;
 }

@@ -1,8 +1,10 @@
 /*******************************************************************//**
 *
-* \file     main.c
+* \file     Player.c
 *
-* \brief    Application entry point.
+* \author   Xavier Del Campo
+*
+* \brief    Implementation of Player module.
 *
 ************************************************************************/
 
@@ -10,8 +12,7 @@
  * Includes
  * *************************************/
 
-#include "SystemInit.h"
-#include "Game.h"
+#include "Player.h"
 
 /* *************************************
  * Defines
@@ -33,28 +34,17 @@
  *  Local prototypes declaration
  * *************************************/
 
+static void ISR_RootCounter2(void);
+
 /* *************************************
  * Functions definition
  * *************************************/
 
 /*******************************************************************//**
 *
-* \brief    Application entry point.
-*
-* \return   Error code 0 (never returned).
+* \brief    Player module initialization.
 *
 ************************************************************************/
-int main(void)
+void PlayerInit(void)
 {
-    /* Initialize game libs and HW. */
-    SystemInit();
-
-    /* Main loop. */
-    for (;;)
-    {
-        /* Execute the game. */
-        Game();
-    }
-
-    return 0;
 }

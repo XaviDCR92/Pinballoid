@@ -67,8 +67,6 @@ void SystemInit(void)
         /* New thread could be allocated successfully. */
         while (1)
         {
-            static int i;
-            printf("i = %d\n", i++);
         }
     }
     else
@@ -81,6 +79,5 @@ static void Thread2(void)
 {
     while (1)
     {
-            printf("Thread2\n");
     }
 }
