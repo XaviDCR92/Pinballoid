@@ -13,12 +13,15 @@
  * *************************************/
 
 #include "Player.h"
+#include "Pad.h"
+#include <assert.h>
+#include <psxpad.h>
 
 /* *************************************
  * Defines
  * *************************************/
 
-#define CHECK_PAD(p) _Static_Assert((1 << KEY_#p) == PAD_#p, "Inconsistency between KEY_" #p " and PAD_" #);
+#define PAD_CHECK(p) STATIC_ASSERT((1 << KEY_##p) == PAD_##p);
 
 /* *************************************
  * Types definition
@@ -32,7 +35,7 @@
  * Local variables definition
  * *************************************/
 
-
+static psx_pad_state padsState[MAX_PLAYERS];
 
 /* *************************************
  *  Local prototypes declaration
@@ -67,12 +70,23 @@ void PadInit(void)
 
 void PadHandler(void)
 {
-    Player player;
+    enum Player player;
 
     for (player = 0; player < MAX_PLAYERS; player++)
     {
-
+        PSX_PollPad_Fast(player, &padsState[player]);
+        pad_read_raw(int pad_n, &pad);
     }
+}
+
+enum psx_pad_types PadType(const enum Player player)
+{
+    if (player < MAX_PLAYERS)
+    {
+        return
+    }
+
+    return PADTYPE_UNKNOWN;
 }
 
 /*******************************************************************//**
@@ -82,6 +96,12 @@ void PadHandler(void)
 ************************************************************************/
 bool PadKeyPressed(const enum Key key, const enum Player player)
 {
-}
+    if (player < MAX_PLAYERS)
+    {
+        if (key < MAX_KEYS)
+        {
+        }
+    }
 
-#endif /* 0 */
+    return false;
+}

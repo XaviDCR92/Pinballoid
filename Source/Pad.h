@@ -16,6 +16,7 @@
  * *************************************/
 
 #include "Player.h"
+#include <stdbool.h>
 
 /* *************************************
  * Defines
@@ -31,7 +32,7 @@ enum Key
     KEY_R2,
     KEY_L1,
     KEY_R1,
-    KEY_TRIANGE,
+    KEY_TRIANGLE,
     KEY_CIRCLE,
     KEY_CROSS,
     KEY_SQUARE,
@@ -42,7 +43,9 @@ enum Key
     KEY_UP,
     KEY_RIGHT,
     KEY_DOWN,
-    KEY_LEFT
+    KEY_LEFT,
+
+    MAX_KEYS
 };
 
 /* *************************************

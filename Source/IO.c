@@ -81,7 +81,7 @@ const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const peSize)
 
         {
             /* Get file data from input file path. */
-            FILE* const pFile = fopen(strFilePath, "r");
+            FILE* const pFile = fopen((char*)strFilePath, "r");
 
             if (pFile != NULL)
             {

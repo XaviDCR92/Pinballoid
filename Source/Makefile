@@ -85,7 +85,7 @@ SRC_SPRITES_PATH = $(PROJECT_DIR)/Sprites
 OBJ_SPRITES_PATH = $(CDROM_ROOT)/DATA/SPRITES
 SPRITE_OBJECTS += $(addprefix $(OBJ_SPRITES_PATH)/,	BG.TIM				\
 													BG2.TIM				\
-													PADDLE.TIM			)
+													GLOBAL.TIM			)
 
 # NOTE:	Fonts, despite still being .TIM files, are separated into another folder,
 # 		so SPRITE_OBJECTS are splitted in two parts.

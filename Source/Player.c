@@ -34,8 +34,6 @@
  *  Local prototypes declaration
  * *************************************/
 
-static void ISR_RootCounter2(void);
-
 /* *************************************
  * Functions definition
  * *************************************/
