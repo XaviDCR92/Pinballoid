@@ -95,5 +95,5 @@ enum tLevel MenuGetSelectedLevel(void)
 
 size_t MenuGetSelectedPlayers(void)
 {
-    return 4;
+    return 3;
 }

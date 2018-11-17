@@ -40,8 +40,6 @@
  *  Local prototypes declaration
  * *************************************/
 
-static void Thread2(void);
-
 /* *************************************
  * Functions definition
  * *************************************/
@@ -62,6 +60,7 @@ void SystemInit(void)
     /* Initialize Timers module. */
     TimersInit();
 
+#if 0
     if (ThreadsCreate(&Thread2))
     {
         /* New thread could be allocated successfully. */
@@ -73,11 +72,5 @@ void SystemInit(void)
     {
         /* Thread could not be created. Exit. */
     }
-}
-
-static void Thread2(void)
-{
-    while (1)
-    {
-    }
+#endif /* 0 */
 }

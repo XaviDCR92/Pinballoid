@@ -16,6 +16,7 @@
 #include "Pad.h"
 #include <assert.h>
 #include <psxpad.h>
+#include <stdint.h>
 
 /* *************************************
  * Defines
@@ -74,8 +75,17 @@ void PadHandler(void)
 
     for (player = 0; player < MAX_PLAYERS; player++)
     {
-        PSX_PollPad_Fast(player, &padsState[player]);
-        pad_read_raw(int pad_n, &pad);
+        enum
+        {
+            RAW_DATA_SIZE = 16
+        };
+
+        static uint8_t padRawData[RAW_DATA_SIZE][MAX_PLAYERS];
+
+        psx_pad_state* const padState = &padsState[player];
+
+        pad_read_raw(player, padRawData[player]);
+        PSX_PollPad_Fast(player, padState);
     }
 }
 
@@ -83,7 +93,7 @@ enum psx_pad_types PadType(const enum Player player)
 {
     if (player < MAX_PLAYERS)
     {
-        return
+        return padsState[player].type;
     }
 
     return PADTYPE_UNKNOWN;

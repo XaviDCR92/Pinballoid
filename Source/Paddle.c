@@ -19,6 +19,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <string.h>
+#include <stdio.h>
 
 /* *****************************************************************************
  * Defines
@@ -72,8 +73,6 @@ static struct PaddleData
  * Local variables definition
  * ****************************************************************************/
 
-static GsSprite paddleSpr;
-
 /* *****************************************************************************
  * Local prototypes declaration
  * ****************************************************************************/
@@ -112,8 +111,11 @@ void PaddleInit(const size_t players)
 
                 memset(paddle, 0, sizeof (struct PaddleData));
 
+                dprintf("%d\n",i);
+
                 if ((paddle->used = (i <= players)))
                 {
+                    dprintf("Paddle %d is now used\n", i);
                     PaddlePosInit(i);
                 }
             }

@@ -121,10 +121,13 @@ static bool GameInit(const size_t players)
     {
         const int seed = RootCounter1Get() ^ RootCounter2Get();
 
-        printf("seed = %d\n", seed);
-
         /* Set random seed based on timer counters. */
         srand(seed);
+
+        dprintf("Seed = %d\n", seed);
+
+        /* Set first game initialization flag. */
+        initDone = true;
     }
 
     PaddleInit(players);
