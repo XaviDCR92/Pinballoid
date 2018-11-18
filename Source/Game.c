@@ -36,13 +36,14 @@
  * Local variables definition
  * ****************************************************************************/
 
-static void GameStart(const enum tLevel eSelectedLevel, const size_t players);
-static bool GameInit(const size_t players);
-static void GameLoop(const size_t players);
-
 /* *****************************************************************************
  * Local prototypes declaration
  * ****************************************************************************/
+
+ static void GameStart(const enum tLevel eSelectedLevel, const size_t players);
+ static void GameInit(const size_t players);
+ static void GameInitFiles(void);
+ static void GameLoop(const size_t players);
 
 /* *****************************************************************************
  * Functions definition
@@ -97,42 +98,54 @@ void Game(void)
 *           all game structures.
 *
 * \param    eSelectedLevel
+*               Reportedly, selected level from the list.
+*
+* \param    players
+*               Number of active players.
 *
 *******************************************************************************/
 static void GameStart(const enum tLevel eSelectedLevel, const size_t players)
 {
     /* Game initialization. */
+    GameInit(players);
 
-    if (GameInit(players))
-    {
-        GameLoop(players);
-    }
-    else
-    {
-        /* Game could not be initialized. Exit. */
-    }
+    /* Gameplay. */
+    GameLoop(players);
 }
 
-static bool GameInit(const size_t players)
+/***************************************************************************//**
+*
+* \brief    Initializes basic elements.
+*
+* \param    players
+*               Number of active players.
+*
+*******************************************************************************/
+static void GameInit(const size_t players)
 {
     static bool initDone;
 
     if (!initDone)
     {
+        /* Calculate random seed based on timer counter values. */
         const int seed = RootCounter1Get() ^ RootCounter2Get();
 
         /* Set random seed based on timer counters. */
         srand(seed);
 
-        dprintf("Seed = %d\n", seed);
+        /* Load needed files. */
+        GameInitFiles();
 
         /* Set first game initialization flag. */
         initDone = true;
     }
 
     PaddleInit(players);
+}
 
-    return true;
+static void GameInitFiles(void)
+{
+
 }
 
 static void GameLoop(const size_t players)

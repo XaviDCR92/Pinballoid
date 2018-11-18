@@ -167,7 +167,7 @@ bool GfxSpriteFromFile(const char* const strFilePath, GsSprite* const pSpr)
              * a GsSprite instance from it. */
 
             /* Call PSXSDK libs to upload image data to VRAM. "const" flag must be removed. */
-            if (GsSpriteFromImage((GsSprite*)pSpr, &sGsi, UPLOAD_IMAGE_FLAG) == 1 /* Success code. */)
+            if (GsSpriteFromImage(pSpr, &sGsi, UPLOAD_IMAGE_FLAG) == 1 /* Success code. */)
             {
                 /* Return success code. */
                 return true;
@@ -311,7 +311,7 @@ void GfxSortSprite(const GsSprite* const psSpr)
     {
         /* Small sprites can be directly drawn using PSXSDK function.
          * On the other hand, big sprites need some more processing. */
-        psSpr->w < MAX_SIZE_FOR_GSSPRITE ? GfxSortBigSprite((GsSprite* const)psSpr) : GsSortSprite(psSpr);
+        psSpr->w < MAX_SIZE_FOR_GSSPRITE ? GfxSortBigSprite((GsSprite* )psSpr) : GsSortSprite(psSpr);
     }
     else
     {

@@ -13,6 +13,7 @@
  * *************************************/
 
 #include "IO.h"
+#include "Interrupts.h"
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -57,8 +58,7 @@
 *
 * \param    peSize
 *               Pointer to size_t variable where file size will
-*               be stored (we all know C does not support multi-return,
-*               shamefully).
+*               be stored.
 *
 * \return   Address to a read-only buffer with file data if successful,
 *           NULL pointer otherwise.
@@ -72,16 +72,23 @@ const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const peSize)
 {
     if (strFilePath)
     {
+        enum
+        {
+            MAX_FILE_PATH_LENGTH = 128
+        };
+
         /* This buffer shall be used to concatenate "cdrom:\\"
          * and ";1" substrings along with indicated file path. */
-        static char buffer[128];
+        static char buffer[MAX_FILE_PATH_LENGTH];
 
         /* Create absolute file path from indicated path. */
         snprintf(buffer, sizeof (buffer), "cdrom:\\%s;1", strFilePath);
 
+        if (buffer != NULL)
         {
+            printf("Attempting to open %s...\n", buffer);
             /* Get file data from input file path. */
-            FILE* const pFile = fopen((char*)strFilePath, "r");
+            FILE* const pFile = fopen(buffer, "r");
 
             if (pFile != NULL)
             {
@@ -159,6 +166,10 @@ const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const peSize)
             {
                 /* File does not exist. Fall through. */
             }
+        }
+        else
+        {
+            /* File path could not be stored. */
         }
     }
     else
