@@ -53,7 +53,6 @@ static enum tMenuResult MenuLoop(void);
 ************************************************************************/
 static bool MenuInit(void)
 {
-    printf("Menu\n");
     return GfxSpriteFromFile("DATA\\SPRITES\\GLOBAL.TIM", &globalSprite);
 }
 
@@ -101,5 +100,5 @@ enum tLevel MenuGetSelectedLevel(void)
 
 size_t MenuGetSelectedPlayers(void)
 {
-    return 3;
+    return 1;
 }

@@ -28,15 +28,15 @@ long_line_behaviour=1
 long_line_column=120
 
 [files]
-current_page=4
+current_page=31
 FILE_NAME_0=0;C;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FFileData.c;0;4
-FILE_NAME_1=4580;C;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FGame.c;0;4
+FILE_NAME_1=4173;C;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FGame.c;0;4
 FILE_NAME_2=13900;C;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FGfx.c;0;4
 FILE_NAME_3=0;C;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FInterrupts.c;0;4
 FILE_NAME_4=2732;C;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FIO.c;0;4
 FILE_NAME_5=0;C;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FLevel.c;0;4
 FILE_NAME_6=1302;C;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2Fmain.c;0;4
-FILE_NAME_7=1450;C;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FMenu.c;0;4
+FILE_NAME_7=1504;C;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FMenu.c;0;4
 FILE_NAME_8=1706;C;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FPad.c;0;4
 FILE_NAME_9=4106;C;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FPaddle.c;0;4
 FILE_NAME_10=402;C;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FPlayer.c;0;4
@@ -50,15 +50,22 @@ FILE_NAME_17=0;C++;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FInter
 FILE_NAME_18=969;C++;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FIO.h;0;4
 FILE_NAME_19=609;C++;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FLevel.h;0;4
 FILE_NAME_20=430;C++;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FMenu.h;0;4
-FILE_NAME_21=522;C++;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FPaddle.h;0;4
+FILE_NAME_21=400;C++;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FPaddle.h;0;4
 FILE_NAME_22=1155;C++;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FPad.h;0;4
 FILE_NAME_23=421;C++;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FPlayer.h;0;4
 FILE_NAME_24=0;C++;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FSystemInit.h;0;4
 FILE_NAME_25=0;C++;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FThreads.h;0;4
 FILE_NAME_26=912;C++;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FTimers.h;0;4
 FILE_NAME_27=420;Make;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPinballoid%2FSource%2FMakefile;0;4
-FILE_NAME_28=1497;C;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2Fpsxsdk-20150729%2Flibpsx%2Fsrc%2Fpsxsdk.c;0;4
+FILE_NAME_28=9219;C;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2Fpsxsdk-20150729%2Flibpsx%2Fsrc%2Fpsxsdk.c;0;4
 FILE_NAME_29=463;C++;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2Fpsxsdk-20150729%2Flibpsx%2Finclude%2Fpsxpad.h;0;4
+FILE_NAME_30=1345;Make;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2Fpsxsdk-20150729%2FMakefile.cfg;0;4
+FILE_NAME_31=4194;C;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2Fpsxsdk-20150729%2Flibpsx%2Fsrc%2Flibc.c;0;4
+FILE_NAME_32=3489;None;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2Fpsxsdk-20150729%2Flibpsx%2Fsrc%2Fsyscalls.s;0;4
+FILE_NAME_33=1994;C;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2Fpsxsdk-20150729%2Flibpsx%2Fsrc%2Fcdrom.c;0;4
+FILE_NAME_34=1408;None;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2Fpsxsdk-20150729%2Flibpsx%2Fsrc%2Fcdromh.s;0;4
+FILE_NAME_35=9993;C++;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2Fpsxsdk-20150729%2Flibpsx%2Finclude%2Fpsx.h;0;4
+FILE_NAME_36=6665;None;0;EUTF-8;0;1;0;%2Fhome%2Fxavier%2Fpsxsdk-20150729%2Flibpsx%2Fsrc%2Fstart%2Fstart.s;0;4
 
 [VTE]
 last_dir=/home/xavier/Pinballoid/Bin

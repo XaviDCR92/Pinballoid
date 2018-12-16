@@ -129,7 +129,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.s
 	$(AS) $< -o $@ $(AS_FLAGS)
 
 $(EXE_PATH)/$(PROJECT).elf: $(OBJECTS)
-	$(LINKER) $^ -o $@ $(LIBS) -Wl,--gc-sections
+	$(LINKER) $^ -o $@ $(LIBS) -Wl,--gc-sections -flto
 
 $(EXE_PATH)/$(PROJECT).iso: $(EXE_PATH)/$(PROJECT).exe $(SOUND_OBJECTS) $(LEVEL_OBJECTS) $(SPRITE_OBJECTS) $(APPS_OBJECTS)
 	mkisofs -o $@ -V $(PROJECT) -sysid PLAYSTATION $(CDROM_ROOT)

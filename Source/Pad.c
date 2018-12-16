@@ -15,8 +15,9 @@
 #include "Player.h"
 #include "Pad.h"
 #include <assert.h>
-#include <psxpad.h>
+#include <psx.h>
 #include <stdint.h>
+#include <stdio.h>
 
 /* *************************************
  * Defines
@@ -78,12 +79,24 @@ void PadHandler(const enum Player player)
             RAW_DATA_SIZE = 16
         };
 
-        static uint8_t padRawData[RAW_DATA_SIZE][MAX_PLAYERS];
+        static uint8_t padRawData[MAX_PLAYERS][RAW_DATA_SIZE];
 
         psx_pad_state* const padState = &padsState[player];
 
+        dprintf("sizeof = %d\n", sizeof (padRawData[0]));
+
         pad_read_raw(player, padRawData[player]);
-        PSX_PollPad_Fast(player, padState);
+
+        size_t i;
+
+        for (i = 0; i < RAW_DATA_SIZE; i++)
+        {
+            dprintf("padRawData[%d][%d] = 0x%02X\n", player, i, padRawData[player][i]);
+        }
+
+        dprintf("padState->id = 0x%02X\n", padState->id);
+
+        PSX_PollPad_Fast_Ex(padRawData[player], padState);
     }
 }
 

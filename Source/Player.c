@@ -92,9 +92,9 @@ void PlayerHandler(void)
     for (player = 0; player < MAX_PLAYERS; player++)
     {
         /* Retrieve PlayerData instance for selected player. */
-        struct PlayerData* const data = &playerData[player];
+        struct PlayerData* const pData = &playerData[player];
 
-        if (data->active)
+        if (pData->active)
         {
             PadHandler(player);
         }

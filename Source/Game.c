@@ -130,8 +130,6 @@ static void GameInit(const size_t players)
         /* Calculate random seed based on timer counter values. */
         const int seed = RootCounter1Get() ^ RootCounter2Get();
 
-        dprintf("seed = %d\n", seed);
-
         /* Set random seed based on timer counters. */
         srand(seed);
 

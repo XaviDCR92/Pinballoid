@@ -99,11 +99,17 @@ const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const fileSize)
             /* Temporarily disable VBlank interrupt. */
             InterruptsDisableInt(INT_SOURCE_VBLANK);
 
+            /* Temporarily disable root counter 2 interrupt. */
+            InterruptsDisableInt(INT_SOURCE_RCNT2);
+
             /* Get file data from input file path. */
             FILE* const pFile = fopen(buffer, "r");
 
             /* Re-enable VBlank interrupt. */
             InterruptsEnableInt(INT_SOURCE_VBLANK);
+
+            /* Re-enable root counter 2 interrupt. */
+            InterruptsEnableInt(INT_SOURCE_RCNT2);
 
             if (pFile != NULL)
             {

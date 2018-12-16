@@ -61,8 +61,8 @@ void TimersInit(void)
         RCNT2_INDEX = 2,
 
         /* Value to be reached by the timer internal counter.
-         * Configured to generate an interrupt every 10 ms. */
-        RCNT2_COMPARE_VALUE = 0xA560
+         * Configured to generate an interrupt every 1 ms. */
+        RCNT2_COMPARE_VALUE = 0x844C
     };
 
     /* Configure interrupt address, index and
@@ -78,17 +78,16 @@ void TimersInit(void)
 * \brief    Root counter 2 interrupt handler.
 *
 *           Root counter 2 counter value is increased at a rate of
-*           System clock / 8 (33.868800 / 8 = 4.2336 MHz).
+*           System clock (33.868800 MHz).
 *
 * \remarks  Executed under interrupt context on timer compare value
-*           reached (every 10 ms according to RCNT2_COMPARE_VALUE).
+*           reached (according to RCNT2_COMPARE_VALUE).
 *
 * \see      TimersInit() for timer compare value configuration.
 *
 ************************************************************************/
 static void ISR_RootCounter2(void)
 {
-#pragma message ("Why is this ISR being actually executed every 1 ms?")
 }
 
 unsigned int RootCounter1Get(void)
