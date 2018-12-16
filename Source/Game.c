@@ -12,8 +12,8 @@
 
 #include "Game.h"
 #include "Menu.h"
+#include "Player.h"
 #include "Timers.h"
-#include "Paddle.h"
 #include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
@@ -130,6 +130,8 @@ static void GameInit(const size_t players)
         /* Calculate random seed based on timer counter values. */
         const int seed = RootCounter1Get() ^ RootCounter2Get();
 
+        dprintf("seed = %d\n", seed);
+
         /* Set random seed based on timer counters. */
         srand(seed);
 
@@ -140,7 +142,7 @@ static void GameInit(const size_t players)
         initDone = true;
     }
 
-    PaddleInit(players);
+    PlayerInit(players);
 }
 
 static void GameInitFiles(void)
@@ -150,4 +152,8 @@ static void GameInitFiles(void)
 
 static void GameLoop(const size_t players)
 {
+    for (;;)
+    {
+        PlayerHandler();
+    }
 }

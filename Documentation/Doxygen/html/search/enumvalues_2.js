@@ -1,9 +1,14 @@
 var searchData=
 [
-  ['max_5finterrupt_5fsources',['MAX_INTERRUPT_SOURCES',['../_interrupts_8h.html#a866e7746dfa1b3935548017052277226a161d1bb7b3e1841c41fafcdddcbea4d9',1,'Interrupts.h']]],
-  ['max_5flevels',['MAX_LEVELS',['../_game_8h.html#a3aef9486ead21bdcea2968c3540ccbd5ae584d293ed8897df65268198eaf1388a',1,'Game.h']]],
-  ['max_5ftot_5fblocks',['MAX_TOT_BLOCKS',['../_threads_8c.html#a6aa6895269ad102e25045823a89948fca0870ae5af0b3160214f96a89b7191cda',1,'Threads.c']]],
-  ['menu_5fresult_5feditor',['MENU_RESULT_EDITOR',['../_menu_8h.html#ac1756a2efc887fcb4713859c29e3fdeeae4fbc7f7010429658172e62887fdbe79',1,'Menu.h']]],
-  ['menu_5fresult_5fgame_5fstart',['MENU_RESULT_GAME_START',['../_menu_8h.html#ac1756a2efc887fcb4713859c29e3fdeea14565191d93d9b01fde4f4f4be1e93fa',1,'Menu.h']]],
-  ['menu_5fresult_5fundefined',['MENU_RESULT_UNDEFINED',['../_menu_8h.html#ac1756a2efc887fcb4713859c29e3fdeeaf63d46e2bb9789c0fdac1a41ad752e93',1,'Menu.h']]]
+  ['int_5fcontroller_5flightpen_5fpio',['INT_CONTROLLER_LIGHTPEN_PIO',['../_interrupts_8h.html#a866e7746dfa1b3935548017052277226a60414cec9c455766d885088adacadb9e',1,'Interrupts.h']]],
+  ['int_5fcontroller_5fmemcard_5fbyte_5freceived',['INT_CONTROLLER_MEMCARD_BYTE_RECEIVED',['../_interrupts_8h.html#a866e7746dfa1b3935548017052277226a686b5dc2995b84ab9cf0751c17756f8c',1,'Interrupts.h']]],
+  ['int_5fsio',['INT_SIO',['../_interrupts_8h.html#a866e7746dfa1b3935548017052277226a43aaba7a48f05056196bfbb220f61aa1',1,'Interrupts.h']]],
+  ['int_5fsource_5fcdrom',['INT_SOURCE_CDROM',['../_interrupts_8h.html#a866e7746dfa1b3935548017052277226a9109d4a390cf7917042cb86bc269b134',1,'Interrupts.h']]],
+  ['int_5fsource_5fdma',['INT_SOURCE_DMA',['../_interrupts_8h.html#a866e7746dfa1b3935548017052277226a5b3d3c90c6d93a428eaf1e670e05b9f6',1,'Interrupts.h']]],
+  ['int_5fsource_5fgpu',['INT_SOURCE_GPU',['../_interrupts_8h.html#a866e7746dfa1b3935548017052277226a937c4baa43ff687863f0eb5c1f958332',1,'Interrupts.h']]],
+  ['int_5fsource_5frcnt0',['INT_SOURCE_RCNT0',['../_interrupts_8h.html#a866e7746dfa1b3935548017052277226a22a72233abd2f9575eff78e8c4a1eb48',1,'Interrupts.h']]],
+  ['int_5fsource_5frcnt1',['INT_SOURCE_RCNT1',['../_interrupts_8h.html#a866e7746dfa1b3935548017052277226a79990230d1cb674e99295435f2c5f11b',1,'Interrupts.h']]],
+  ['int_5fsource_5frcnt2',['INT_SOURCE_RCNT2',['../_interrupts_8h.html#a866e7746dfa1b3935548017052277226a1a33d7d6a50a4edf0447c087bd3012eb',1,'Interrupts.h']]],
+  ['int_5fsource_5fvblank',['INT_SOURCE_VBLANK',['../_interrupts_8h.html#a866e7746dfa1b3935548017052277226a0552f5dc4434b6c1c66db8df95f32de1',1,'Interrupts.h']]],
+  ['int_5fspu',['INT_SPU',['../_interrupts_8h.html#a866e7746dfa1b3935548017052277226ae45b8639e3289c3f508a82c2c7ce57a2',1,'Interrupts.h']]]
 ];

@@ -13,8 +13,7 @@ var _threads_8c =
       [ "TOT_BLOCK_RESERVED_4", "_threads_8c.html#a6aa6895269ad102e25045823a89948fca6f6eef6693f4ac24caab3bd079040c58", null ],
       [ "TOT_BLOCK_FCB", "_threads_8c.html#a6aa6895269ad102e25045823a89948fca024ca1653c8e12cf25edd86790579acd", null ],
       [ "TOT_BLOCK_RESERVED_5", "_threads_8c.html#a6aa6895269ad102e25045823a89948fca8e0ace0a83fe2c9098051ee074dadb41", null ],
-      [ "TOT_BLOCK_DCB", "_threads_8c.html#a6aa6895269ad102e25045823a89948fca9985fbd69195a01a64e7a5c5709b0baf", null ],
-      [ "MAX_TOT_BLOCKS", "_threads_8c.html#a6aa6895269ad102e25045823a89948fca0870ae5af0b3160214f96a89b7191cda", null ]
+      [ "TOT_BLOCK_DCB", "_threads_8c.html#a6aa6895269ad102e25045823a89948fca9985fbd69195a01a64e7a5c5709b0baf", null ]
     ] ],
     [ "ThreadsCreate", "_threads_8c.html#af33e8fddfb99deb0e83c53dc477be14b", null ],
     [ "sToT", "_threads_8c.html#ac38c2e7e6c407d6704dc6b07bb544912", null ]

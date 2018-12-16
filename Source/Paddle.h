@@ -15,7 +15,7 @@
  * Includes
  * *************************************/
 
-#include <stddef.h>
+#include "Player.h"
 
 /* *************************************
  * Defines
@@ -33,6 +33,6 @@
  * Public functions declaration
  * *************************************/
 
-void PaddleInit(const size_t players);
+void PaddleInit(const enum Player player);
 
 #endif /* PADDLE_H */

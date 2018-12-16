@@ -96,16 +96,16 @@ void GfxInit(void)
     /* Clear VRAM. */
     GsClearMem();
 
-#if ( (VIDEO_MODE == VMODE_PAL) || (VIDEO_MODE == VMODE_NSTC) )
+#if (VIDEO_MODE == VMODE_PAL) || (VIDEO_MODE == VMODE_NSTC)
 
     /* Set Video Resolution. VIDEO_MODE can be either VMODE_PAL or VMODE_NTSC */
     GsSetVideoMode(X_SCREEN_RESOLUTION, Y_SCREEN_RESOLUTION, VIDEO_MODE);
 
-#else /* ( (VIDEO_MODE == VMODE_PAL) || (VIDEO_MODE == VMODE_NSTC) ) */
+#else /* (VIDEO_MODE == VMODE_PAL) || (VIDEO_MODE == VMODE_NSTC) */
 
 #error  "Undefined VIDEO_MODE"
 
-#endif /* ( (VIDEO_MODE == VMODE_PAL) || (VIDEO_MODE == VMODE_NSTC) ) */
+#endif /* (VIDEO_MODE == VMODE_PAL) || (VIDEO_MODE == VMODE_NSTC) */
 
     /* Set Drawing Environment. */
     GfxInitDrawEnv();
@@ -144,11 +144,9 @@ bool GfxSpriteFromFile(const char* const strFilePath, GsSprite* const pSpr)
     size_t eSize;
 
     /* Get buffer address where file data is contained. */
-    const uint8_t* const pu8Buffer = IOLoadFile(strFilePath, &eSize);
+    const uint8_t* const buffer = IOLoadFile(strFilePath, &eSize);
 
-    if (    (pu8Buffer != NULL)
-                    &&
-            (eSize != IO_INVALID_FILE_SIZE) )
+    if (buffer && (eSize != IO_INVALID_FILE_SIZE))
     {
         /* File was loaded successfully into buffer.
          * Now read buffer data and upload it to VRAM. */
@@ -156,7 +154,9 @@ bool GfxSpriteFromFile(const char* const strFilePath, GsSprite* const pSpr)
         /* Declare a GsImage instance, needed by GsImageFromTim(). */
         GsImage sGsi;
 
-        if (GsImageFromTim(&sGsi, pu8Buffer) == 1 /* Success code. */)
+        while (GsIsDrawing());
+
+        if (GsImageFromTim(&sGsi, buffer) == 1 /* Success code. */)
         {
             enum
             {
@@ -206,9 +206,7 @@ void GfxDrawScene(void)
 {
     /* Hold program execution until VSYNC flag is set
      * and GPU is ready to work. */
-    while ( (bSyncFlag == false)
-                    ||
-            (GsIsDrawing() != false)    );
+    while (!bSyncFlag || GsIsDrawing());
 
     /* Reset VSYNC event flag. */
     bSyncFlag = false;
@@ -246,13 +244,13 @@ void GfxDrawScene(void)
 ************************************************************************/
 bool GfxIsInsideScreenArea(const short x, const short y, const short w, const short h)
 {
-    if (    ( (x + w) >= 0)
-                &&
-            (x < sDrawEnv.w)
-                &&
-            ( (y + h) >= 0)
-                &&
-            (y < sDrawEnv.h) )
+    if (((x + w) >= 0)
+            &&
+        (x < sDrawEnv.w)
+            &&
+        ((y + h) >= 0)
+            &&
+        (y < sDrawEnv.h))
     {
         /* Rectangle is inside drawing environment area. */
         return true;
@@ -305,13 +303,13 @@ bool GfxIsSpriteInsideScreenArea(const GsSprite* const psSpr)
 * \see      GfxSortBigSprite() to see how big sprites are handled.
 *
 ************************************************************************/
-void GfxSortSprite(const GsSprite* const psSpr)
+void GfxSortSprite(GsSprite* const psSpr)
 {
-    if (GfxIsSpriteInsideScreenArea(psSpr) != false)
+    if (GfxIsSpriteInsideScreenArea(psSpr))
     {
         /* Small sprites can be directly drawn using PSXSDK function.
          * On the other hand, big sprites need some more processing. */
-        psSpr->w < MAX_SIZE_FOR_GSSPRITE ? GfxSortBigSprite((GsSprite* )psSpr) : GsSortSprite(psSpr);
+        psSpr->w < MAX_SIZE_FOR_GSSPRITE ? GfxSortBigSprite(psSpr) : GsSortSprite(psSpr);
     }
     else
     {
@@ -385,9 +383,6 @@ static void GfxSortBigSprite(GsSprite* const psSpr)
 static void GfxInitDrawEnv(void)
 {
     /* Initialize drawing environment default values. */
-    sDrawEnv.x = 0;
-    sDrawEnv.y = 0;
-    sDrawEnv.draw_on_display = false;
     sDrawEnv.w = X_SCREEN_RESOLUTION;
     sDrawEnv.h = Y_SCREEN_RESOLUTION;
 
@@ -408,10 +403,6 @@ static void GfxInitDrawEnv(void)
 ************************************************************************/
 static void GfxInitDispEnv(void)
 {
-    /* Initialize display environment default values. */
-    sDispEnv.x = 0;
-    sDispEnv.y = 0;
-
     /* Initialize display environment. */
     GsSetDispEnv(&sDispEnv);
 }
@@ -431,24 +422,21 @@ static void GfxSetPrimList(void)
         PRIMITIVE_LIST_SIZE = 0x400
     };
 
-    /* Buffer that will hold all primitive low-level data. */
-    static uint32_t au32PrimList1[PRIMITIVE_LIST_SIZE];
-
-    /* Secondary buffer with the same purpose as au32PrimList1. */
-    static uint32_t au32PrimList2[PRIMITIVE_LIST_SIZE];
+    /* Buffers that will hold all primitive low-level data. */
+    static uint32_t primLists[PRIMITIVE_LIST_SIZE][2];
 
     /* This flag is reversed each time this function is called,
      * so that only one buffer is used at a time. */
-    static bool bPrimListUsed;
+    static size_t primListIdx;
 
     /* Select buffer depending on bPrimListUsed. */
-    uint32_t* const pu32PrimList = bPrimListUsed ? au32PrimList1 : au32PrimList2;
+    uint32_t* const primList = primLists[primListIdx];
 
-    /* Set Primitive List. */
-    GsSetList(pu32PrimList);
+    /* Set primitive list. */
+    GsSetList(primList);
 
-    /* Invert bPrimListUsed state. */
-    bPrimListUsed = bPrimListUsed ? true : false;
+    /* Invert index. */
+    primListIdx ^= 1;
 }
 
 /*******************************************************************//**

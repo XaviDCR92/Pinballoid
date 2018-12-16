@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['table_5fof_5ftables_5faddr',['TABLE_OF_TABLES_ADDR',['../_threads_8c.html#abd6354851b1100ee7d1a2d7aa1c124e0',1,'Threads.c']]]
+  ['sprite_5findex_5finvalid',['SPRITE_INDEX_INVALID',['../_gfx_8h.html#a19e44c46f496184190f539b8b134086b',1,'Gfx.h']]]
 ];

@@ -91,14 +91,28 @@ $(document).ready(function(){initNavTree('_game_8c.html','');});
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_game_8h_source.html">Game.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_menu_8h_source.html">Menu.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_player_8h_source.html">Player.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_timers_8h_source.html">Timers.h</a>&quot;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stddef.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
 </div>
 <p><a href="_game_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a084b7c13ad496ec6802c6f45a57078a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_game_8c.html#a084b7c13ad496ec6802c6f45a57078a2">GameStart</a> (const enum <a class="el" href="_game_8h.html#a3aef9486ead21bdcea2968c3540ccbd5">tLevel</a> eSelectedLevel)</td></tr>
-<tr class="memdesc:a084b7c13ad496ec6802c6f45a57078a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a level indicated by eSelectedLevel and all game structures.  <a href="#a084b7c13ad496ec6802c6f45a57078a2">More...</a><br /></td></tr>
-<tr class="separator:a084b7c13ad496ec6802c6f45a57078a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef6666bc2e3f0c5daee04b5ac9e4a410"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_game_8c.html#aef6666bc2e3f0c5daee04b5ac9e4a410">GameStart</a> (const enum <a class="el" href="_game_8h.html#a3aef9486ead21bdcea2968c3540ccbd5">tLevel</a> eSelectedLevel, const size_t players)</td></tr>
+<tr class="memdesc:aef6666bc2e3f0c5daee04b5ac9e4a410"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a level indicated by eSelectedLevel and all game structures.  <a href="#aef6666bc2e3f0c5daee04b5ac9e4a410">More...</a><br /></td></tr>
+<tr class="separator:aef6666bc2e3f0c5daee04b5ac9e4a410"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d82dd821489c08c3c080ef021528b50"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_game_8c.html#a4d82dd821489c08c3c080ef021528b50">GameInit</a> (const size_t players)</td></tr>
+<tr class="memdesc:a4d82dd821489c08c3c080ef021528b50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes basic elements.  <a href="#a4d82dd821489c08c3c080ef021528b50">More...</a><br /></td></tr>
+<tr class="separator:a4d82dd821489c08c3c080ef021528b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f7db59f533fd4cd763799ac418218a3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_game_8c.html#a2f7db59f533fd4cd763799ac418218a3">GameInitFiles</a> (void)</td></tr>
+<tr class="separator:a2f7db59f533fd4cd763799ac418218a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55486b147aa3dad91e971a4b3817adde"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_game_8c.html#a55486b147aa3dad91e971a4b3817adde">GameLoop</a> (const size_t players)</td></tr>
+<tr class="separator:a55486b147aa3dad91e971a4b3817adde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e84fc568e3c82764b7f9095c59952f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_game_8c.html#a2e84fc568e3c82764b7f9095c59952f4">Game</a> (void)</td></tr>
 <tr class="memdesc:a2e84fc568e3c82764b7f9095c59952f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Game logic entry point.  <a href="#a2e84fc568e3c82764b7f9095c59952f4">More...</a><br /></td></tr>
 <tr class="separator:a2e84fc568e3c82764b7f9095c59952f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,44 +140,163 @@ Functions</h2></td></tr>
 
 <p>Game logic entry point. </p>
 
-<p class="definition">Definition at line <a class="el" href="_game_8c_source.html#l00047">47</a> of file <a class="el" href="_game_8c_source.html">Game.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">/* Execute game main menu and determine</span></div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">     * next steps depending on its result. */</span></div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">switch</span> (<a class="code" href="_menu_8c.html#a39b33a107c81f55dccc6ed97097f275b">Menu</a>())</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    {</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="_menu_8h.html#ac1756a2efc887fcb4713859c29e3fdeeae4fbc7f7010429658172e62887fdbe79">MENU_RESULT_EDITOR</a>:</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">break</span>;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="_menu_8h.html#ac1756a2efc887fcb4713859c29e3fdeea14565191d93d9b01fde4f4f4be1e93fa">MENU_RESULT_GAME_START</a>:</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        {</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="comment">/* Get selected level from Menu. */</span></div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keyword">const</span> <span class="keyword">enum</span> <a class="code" href="_game_8h.html#a3aef9486ead21bdcea2968c3540ccbd5">tLevel</a> eSelectedLevel = <a class="code" href="_menu_8c.html#a34a21124a32764da25868483c10d0daf">MenuGetSelectedLevel</a>();</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="keywordflow">if</span> (eSelectedLevel &lt; <a class="code" href="_game_8h.html#a3aef9486ead21bdcea2968c3540ccbd5ae584d293ed8897df65268198eaf1388a">MAX_LEVELS</a>)</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            {</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                <span class="comment">/* Start gameplay given level number. */</span></div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                <a class="code" href="_game_8c.html#a084b7c13ad496ec6802c6f45a57078a2">GameStart</a>(eSelectedLevel);</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            }</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="keywordflow">else</span></div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            {</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                <span class="comment">/* Invalid level number has been selected.</span></div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">                 * Exit function and return to start point. */</span></div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            }</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        }</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">break</span>;</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="_menu_8h.html#ac1756a2efc887fcb4713859c29e3fdeeaf63d46e2bb9789c0fdac1a41ad752e93">MENU_RESULT_UNDEFINED</a>:</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="comment">/* Fall through. */</span></div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">default</span>:</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="comment">/* Invalid result. Restart game. */</span></div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">break</span>;</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div><div class="ttc" id="_menu_8h_html_ac1756a2efc887fcb4713859c29e3fdeea14565191d93d9b01fde4f4f4be1e93fa"><div class="ttname"><a href="_menu_8h.html#ac1756a2efc887fcb4713859c29e3fdeea14565191d93d9b01fde4f4f4be1e93fa">MENU_RESULT_GAME_START</a></div><div class="ttdef"><b>Definition:</b> <a href="_menu_8h_source.html#l00042">Menu.h:42</a></div></div>
-<div class="ttc" id="_menu_8h_html_ac1756a2efc887fcb4713859c29e3fdeeaf63d46e2bb9789c0fdac1a41ad752e93"><div class="ttname"><a href="_menu_8h.html#ac1756a2efc887fcb4713859c29e3fdeeaf63d46e2bb9789c0fdac1a41ad752e93">MENU_RESULT_UNDEFINED</a></div><div class="ttdef"><b>Definition:</b> <a href="_menu_8h_source.html#l00040">Menu.h:40</a></div></div>
+<p class="definition">Definition at line <a class="el" href="_game_8c_source.html#l00057">57</a> of file <a class="el" href="_game_8c_source.html">Game.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">/* Execute game main menu and determine</span></div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">     * next steps depending on its result. */</span></div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">switch</span> (<a class="code" href="_menu_8c.html#a39b33a107c81f55dccc6ed97097f275b">Menu</a>())</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    {</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="_menu_8h.html#ac1756a2efc887fcb4713859c29e3fdeeae4fbc7f7010429658172e62887fdbe79">MENU_RESULT_EDITOR</a>:</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">break</span>;</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="_menu_8h.html#ac1756a2efc887fcb4713859c29e3fdeea14565191d93d9b01fde4f4f4be1e93fa">MENU_RESULT_GAME_START</a>:</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        {</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="comment">/* Get selected level from Menu. */</span></div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keyword">const</span> <span class="keyword">enum</span> <a class="code" href="_game_8h.html#a3aef9486ead21bdcea2968c3540ccbd5">tLevel</a> eSelectedLevel = <a class="code" href="_menu_8c.html#a34a21124a32764da25868483c10d0daf">MenuGetSelectedLevel</a>();</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">size_t</span> players = <a class="code" href="_menu_8c.html#a0c751a984603bbbb2bf6b05f3e6dc1d8">MenuGetSelectedPlayers</a>();</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordflow">if</span> (eSelectedLevel &lt; <a class="code" href="_game_8h.html#a3aef9486ead21bdcea2968c3540ccbd5ae584d293ed8897df65268198eaf1388a">MAX_LEVELS</a>)</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            {</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <span class="comment">/* Start gameplay given level number. */</span></div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <a class="code" href="_game_8c.html#aef6666bc2e3f0c5daee04b5ac9e4a410">GameStart</a>(eSelectedLevel, players);</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            }</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keywordflow">else</span></div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            {</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                <span class="comment">/* Invalid level number has been selected.</span></div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">                 * Exit function and return to start point. */</span></div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            }</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        }</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordflow">break</span>;</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="_menu_8h.html#ac1756a2efc887fcb4713859c29e3fdeeaf63d46e2bb9789c0fdac1a41ad752e93">MENU_RESULT_UNDEFINED</a>:</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <span class="comment">/* Fall through. */</span></div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordflow">default</span>:</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            <span class="comment">/* Invalid result. Restart game. */</span></div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">break</span>;</div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    }</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div><div class="ttc" id="_menu_8h_html_ac1756a2efc887fcb4713859c29e3fdeea14565191d93d9b01fde4f4f4be1e93fa"><div class="ttname"><a href="_menu_8h.html#ac1756a2efc887fcb4713859c29e3fdeea14565191d93d9b01fde4f4f4be1e93fa">MENU_RESULT_GAME_START</a></div><div class="ttdef"><b>Definition:</b> <a href="_menu_8h_source.html#l00034">Menu.h:34</a></div></div>
+<div class="ttc" id="_menu_8h_html_ac1756a2efc887fcb4713859c29e3fdeeaf63d46e2bb9789c0fdac1a41ad752e93"><div class="ttname"><a href="_menu_8h.html#ac1756a2efc887fcb4713859c29e3fdeeaf63d46e2bb9789c0fdac1a41ad752e93">MENU_RESULT_UNDEFINED</a></div><div class="ttdef"><b>Definition:</b> <a href="_menu_8h_source.html#l00032">Menu.h:32</a></div></div>
+<div class="ttc" id="_menu_8c_html_a0c751a984603bbbb2bf6b05f3e6dc1d8"><div class="ttname"><a href="_menu_8c.html#a0c751a984603bbbb2bf6b05f3e6dc1d8">MenuGetSelectedPlayers</a></div><div class="ttdeci">size_t MenuGetSelectedPlayers(void)</div><div class="ttdef"><b>Definition:</b> <a href="_menu_8c_source.html#l00102">Menu.c:102</a></div></div>
 <div class="ttc" id="_game_8h_html_a3aef9486ead21bdcea2968c3540ccbd5"><div class="ttname"><a href="_game_8h.html#a3aef9486ead21bdcea2968c3540ccbd5">tLevel</a></div><div class="ttdeci">tLevel</div><div class="ttdef"><b>Definition:</b> <a href="_game_8h_source.html#l00026">Game.h:26</a></div></div>
-<div class="ttc" id="_game_8c_html_a084b7c13ad496ec6802c6f45a57078a2"><div class="ttname"><a href="_game_8c.html#a084b7c13ad496ec6802c6f45a57078a2">GameStart</a></div><div class="ttdeci">void GameStart(const enum tLevel eSelectedLevel)</div><div class="ttdoc">Initializes a level indicated by eSelectedLevel and all game structures. </div><div class="ttdef"><b>Definition:</b> <a href="_game_8c_source.html#l00091">Game.c:91</a></div></div>
-<div class="ttc" id="_menu_8h_html_ac1756a2efc887fcb4713859c29e3fdeeae4fbc7f7010429658172e62887fdbe79"><div class="ttname"><a href="_menu_8h.html#ac1756a2efc887fcb4713859c29e3fdeeae4fbc7f7010429658172e62887fdbe79">MENU_RESULT_EDITOR</a></div><div class="ttdef"><b>Definition:</b> <a href="_menu_8h_source.html#l00041">Menu.h:41</a></div></div>
+<div class="ttc" id="_menu_8h_html_ac1756a2efc887fcb4713859c29e3fdeeae4fbc7f7010429658172e62887fdbe79"><div class="ttname"><a href="_menu_8h.html#ac1756a2efc887fcb4713859c29e3fdeeae4fbc7f7010429658172e62887fdbe79">MENU_RESULT_EDITOR</a></div><div class="ttdef"><b>Definition:</b> <a href="_menu_8h_source.html#l00033">Menu.h:33</a></div></div>
+<div class="ttc" id="_game_8c_html_aef6666bc2e3f0c5daee04b5ac9e4a410"><div class="ttname"><a href="_game_8c.html#aef6666bc2e3f0c5daee04b5ac9e4a410">GameStart</a></div><div class="ttdeci">static void GameStart(const enum tLevel eSelectedLevel, const size_t players)</div><div class="ttdoc">Initializes a level indicated by eSelectedLevel and all game structures. </div><div class="ttdef"><b>Definition:</b> <a href="_game_8c_source.html#l00107">Game.c:107</a></div></div>
 <div class="ttc" id="_game_8h_html_a3aef9486ead21bdcea2968c3540ccbd5ae584d293ed8897df65268198eaf1388a"><div class="ttname"><a href="_game_8h.html#a3aef9486ead21bdcea2968c3540ccbd5ae584d293ed8897df65268198eaf1388a">MAX_LEVELS</a></div><div class="ttdef"><b>Definition:</b> <a href="_game_8h_source.html#l00030">Game.h:30</a></div></div>
-<div class="ttc" id="_menu_8c_html_a34a21124a32764da25868483c10d0daf"><div class="ttname"><a href="_menu_8c.html#a34a21124a32764da25868483c10d0daf">MenuGetSelectedLevel</a></div><div class="ttdeci">enum tLevel MenuGetSelectedLevel(void)</div><div class="ttdoc">This function returns level selected by user. </div><div class="ttdef"><b>Definition:</b> <a href="_menu_8c_source.html#l00079">Menu.c:79</a></div></div>
-<div class="ttc" id="_menu_8c_html_a39b33a107c81f55dccc6ed97097f275b"><div class="ttname"><a href="_menu_8c.html#a39b33a107c81f55dccc6ed97097f275b">Menu</a></div><div class="ttdeci">enum tMenuResult Menu(void)</div><div class="ttdoc">Game logic entry point. </div><div class="ttdef"><b>Definition:</b> <a href="_menu_8c_source.html#l00048">Menu.c:48</a></div></div>
+<div class="ttc" id="_menu_8c_html_a34a21124a32764da25868483c10d0daf"><div class="ttname"><a href="_menu_8c.html#a34a21124a32764da25868483c10d0daf">MenuGetSelectedLevel</a></div><div class="ttdeci">enum tLevel MenuGetSelectedLevel(void)</div><div class="ttdoc">This function returns level selected by user. </div><div class="ttdef"><b>Definition:</b> <a href="_menu_8c_source.html#l00097">Menu.c:97</a></div></div>
+<div class="ttc" id="_menu_8c_html_a39b33a107c81f55dccc6ed97097f275b"><div class="ttname"><a href="_menu_8c.html#a39b33a107c81f55dccc6ed97097f275b">Menu</a></div><div class="ttdeci">enum tMenuResult Menu(void)</div><div class="ttdoc">Game logic entry point. </div><div class="ttdef"><b>Definition:</b> <a href="_menu_8c_source.html#l00065">Menu.c:65</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a084b7c13ad496ec6802c6f45a57078a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a084b7c13ad496ec6802c6f45a57078a2">&#9670;&nbsp;</a></span>GameStart()</h2>
+<a id="a4d82dd821489c08c3c080ef021528b50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d82dd821489c08c3c080ef021528b50">&#9670;&nbsp;</a></span>GameInit()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void GameStart </td>
+          <td class="memname">static void GameInit </td>
           <td>(</td>
-          <td class="paramtype">const enum <a class="el" href="_game_8h.html#a3aef9486ead21bdcea2968c3540ccbd5">tLevel</a>&#160;</td>
-          <td class="paramname"><em>eSelectedLevel</em></td><td>)</td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>players</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initializes basic elements. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">players</td><td>Number of active players. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_game_8c_source.html#l00124">124</a> of file <a class="el" href="_game_8c_source.html">Game.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;{</div><div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> initDone;</div><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordflow">if</span> (!initDone)</div><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    {</div><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="comment">/* Calculate random seed based on timer counter values. */</span></div><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> seed = <a class="code" href="_timers_8c.html#ace8ef0011ff8ae0b10096707dc53293a">RootCounter1Get</a>() ^ <a class="code" href="_timers_8c.html#a76e516a474ecc758fb9ea3db054c8eb1">RootCounter2Get</a>();</div><div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div><div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        dprintf(<span class="stringliteral">&quot;seed = %d\n&quot;</span>, seed);</div><div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div><div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="comment">/* Set random seed based on timer counters. */</span></div><div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        srand(seed);</div><div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div><div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="comment">/* Load needed files. */</span></div><div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <a class="code" href="_game_8c.html#a2f7db59f533fd4cd763799ac418218a3">GameInitFiles</a>();</div><div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div><div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="comment">/* Set first game initialization flag. */</span></div><div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        initDone = <span class="keyword">true</span>;</div><div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    }</div><div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div><div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <a class="code" href="_player_8c.html#ade5b9e12f2ab5c509a9b2508262b5055">PlayerInit</a>(players);</div><div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;}</div><div class="ttc" id="_timers_8c_html_ace8ef0011ff8ae0b10096707dc53293a"><div class="ttname"><a href="_timers_8c.html#ace8ef0011ff8ae0b10096707dc53293a">RootCounter1Get</a></div><div class="ttdeci">unsigned int RootCounter1Get(void)</div><div class="ttdef"><b>Definition:</b> <a href="_timers_8c_source.html#l00094">Timers.c:94</a></div></div>
+<div class="ttc" id="_player_8c_html_ade5b9e12f2ab5c509a9b2508262b5055"><div class="ttname"><a href="_player_8c.html#ade5b9e12f2ab5c509a9b2508262b5055">PlayerInit</a></div><div class="ttdeci">void PlayerInit(const size_t players)</div><div class="ttdoc">Player module initialization. </div><div class="ttdef"><b>Definition:</b> <a href="_player_8c_source.html#l00058">Player.c:58</a></div></div>
+<div class="ttc" id="_game_8c_html_a2f7db59f533fd4cd763799ac418218a3"><div class="ttname"><a href="_game_8c.html#a2f7db59f533fd4cd763799ac418218a3">GameInitFiles</a></div><div class="ttdeci">static void GameInitFiles(void)</div><div class="ttdef"><b>Definition:</b> <a href="_game_8c_source.html#l00148">Game.c:148</a></div></div>
+<div class="ttc" id="_timers_8c_html_a76e516a474ecc758fb9ea3db054c8eb1"><div class="ttname"><a href="_timers_8c.html#a76e516a474ecc758fb9ea3db054c8eb1">RootCounter2Get</a></div><div class="ttdeci">unsigned int RootCounter2Get(void)</div><div class="ttdef"><b>Definition:</b> <a href="_timers_8c_source.html#l00099">Timers.c:99</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a2f7db59f533fd4cd763799ac418218a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f7db59f533fd4cd763799ac418218a3">&#9670;&nbsp;</a></span>GameInitFiles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void GameInitFiles </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_game_8c_source.html#l00148">148</a> of file <a class="el" href="_game_8c_source.html">Game.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;{</div><div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div><div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;}</div></div><!-- fragment -->
+</div>
+</div>
+<a id="a55486b147aa3dad91e971a4b3817adde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55486b147aa3dad91e971a4b3817adde">&#9670;&nbsp;</a></span>GameLoop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void GameLoop </td>
+          <td>(</td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>players</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_game_8c_source.html#l00153">153</a> of file <a class="el" href="_game_8c_source.html">Game.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;{</div><div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordflow">for</span> (;;)</div><div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    {</div><div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <a class="code" href="_player_8c.html#adc6ff43fb648595cd4fb15ea400ee18f">PlayerHandler</a>();</div><div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    }</div><div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;}</div><div class="ttc" id="_player_8c_html_adc6ff43fb648595cd4fb15ea400ee18f"><div class="ttname"><a href="_player_8c.html#adc6ff43fb648595cd4fb15ea400ee18f">PlayerHandler</a></div><div class="ttdeci">void PlayerHandler(void)</div><div class="ttdef"><b>Definition:</b> <a href="_player_8c_source.html#l00088">Player.c:88</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aef6666bc2e3f0c5daee04b5ac9e4a410"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef6666bc2e3f0c5daee04b5ac9e4a410">&#9670;&nbsp;</a></span>GameStart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void GameStart </td>
+          <td>(</td>
+          <td class="paramtype">const enum <a class="el" href="_game_8h.html#a3aef9486ead21bdcea2968c3540ccbd5">tLevel</a>&#160;</td>
+          <td class="paramname"><em>eSelectedLevel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>players</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Initializes a level indicated by eSelectedLevel and all game structures. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">eSelectedLevel</td><td></td></tr>
+    <tr><td class="paramname">eSelectedLevel</td><td>Reportedly, selected level from the list.</td></tr>
+    <tr><td class="paramname">players</td><td>Number of active players. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_game_8c_source.html#l00091">91</a> of file <a class="el" href="_game_8c_source.html">Game.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;{</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;}</div></div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="_game_8c_source.html#l00107">107</a> of file <a class="el" href="_game_8c_source.html">Game.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;{</div><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="comment">/* Game initialization. */</span></div><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <a class="code" href="_game_8c.html#a4d82dd821489c08c3c080ef021528b50">GameInit</a>(players);</div><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="comment">/* Gameplay. */</span></div><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <a class="code" href="_game_8c.html#a55486b147aa3dad91e971a4b3817adde">GameLoop</a>(players);</div><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div><div class="ttc" id="_game_8c_html_a55486b147aa3dad91e971a4b3817adde"><div class="ttname"><a href="_game_8c.html#a55486b147aa3dad91e971a4b3817adde">GameLoop</a></div><div class="ttdeci">static void GameLoop(const size_t players)</div><div class="ttdef"><b>Definition:</b> <a href="_game_8c_source.html#l00153">Game.c:153</a></div></div>
+<div class="ttc" id="_game_8c_html_a4d82dd821489c08c3c080ef021528b50"><div class="ttname"><a href="_game_8c.html#a4d82dd821489c08c3c080ef021528b50">GameInit</a></div><div class="ttdeci">static void GameInit(const size_t players)</div><div class="ttdoc">Initializes basic elements. </div><div class="ttdef"><b>Definition:</b> <a href="_game_8c_source.html#l00124">Game.c:124</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

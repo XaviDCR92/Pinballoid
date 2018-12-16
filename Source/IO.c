@@ -23,6 +23,11 @@
  * Defines
  * *************************************/
 
+enum
+{
+    FILE_BUFFER_SIZE = (182 << 10)
+};
+
 /* *************************************
  * Types definition
  * *************************************/
@@ -34,6 +39,11 @@
 /* *************************************
  * Local variables definition
  * *************************************/
+
+/* This buffer holds file data read from CD-ROM.
+ * It is cleared out on each call to IOLoadFile(),
+ * so copy its contents into an auxilar buffer if needed. */
+static uint8_t au8FileBuffer[FILE_BUFFER_SIZE];
 
 /* *************************************
  *  Local prototypes declaration
@@ -56,19 +66,19 @@
 *               Relative file path e.g.:
 *               "DATA\\SPRITES\\TILESET1.TIM".
 *
-* \param    peSize
+* \param    fileSize
 *               Pointer to size_t variable where file size will
 *               be stored.
 *
 * \return   Address to a read-only buffer with file data if successful,
 *           NULL pointer otherwise.
 *
-* \return   peSize
+* \return   fileSize
 *  is assigned to actual file size in bytes
 *           if successful, IO_INVALID_FILE_SIZE otherwise.
 *
 ************************************************************************/
-const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const peSize)
+const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const fileSize)
 {
     if (strFilePath)
     {
@@ -86,74 +96,74 @@ const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const peSize)
 
         if (buffer != NULL)
         {
-            printf("Attempting to open %s...\n", buffer);
+            /* Temporarily disable VBlank interrupt. */
+            InterruptsDisableInt(INT_SOURCE_VBLANK);
+
             /* Get file data from input file path. */
             FILE* const pFile = fopen(buffer, "r");
 
+            /* Re-enable VBlank interrupt. */
+            InterruptsEnableInt(INT_SOURCE_VBLANK);
+
             if (pFile != NULL)
             {
-                /* File could be found successfully. */
-
                 /* Move file pointer to end of file. */
                 if (fseek(pFile, 0, SEEK_END) == 0 /* Success code. */)
                 {
-                    enum
+                    if (fileSize != NULL)
                     {
-                        /* Reserve 128 kB for file data.
-                         * This is more than enough for a
-                         * 384 px * 240 px * 2 byte/px = 120 kB image. */
-                        FILE_BUFFER_SIZE = (128 << 10)
-                    };
+                        /* File pointer could be successfully
+                         * moved to the new position. */
 
-                    /* File pointer could be successfully
-                     * moved to the new position. */
+                        /* Return file size in bytes to upper layers. */
+                        *fileSize = ftell(pFile);
 
-                    /* Return file size in bytes to upper layers. */
-                    *peSize = ftell(pFile);
-
-                    if (*peSize >= FILE_BUFFER_SIZE)
-                    {
-                        /* Buffer was successfully allocated according
-                         * to file size. Now read file data into buffer. */
-
-                        /* Reset file pointer iterator position first. */
-                        if (fseek(pFile, 0, SEEK_SET) == 0 /* Sucess code. */)
+                        if (*fileSize < FILE_BUFFER_SIZE)
                         {
-                            /* This buffer holds file data read from CD-ROM.
-                             * It is cleared out on each call to IOLoadFile(),
-                             * so copy its contents into an auxilar buffer if needed. */
-                            static uint8_t au8FileBuffer[FILE_BUFFER_SIZE];
+                            /* Buffer was successfully allocated according
+                             * to file size. Now read file data into buffer. */
 
-                            /* Read file data into newly allocated buffer. */
-                            const size_t eReadBytes = fread(au8FileBuffer, sizeof (uint8_t), FILE_BUFFER_SIZE, pFile);
-
-                            /* Close input opened file first. */
-                            fclose(pFile);
-
-                            if (eReadBytes == *peSize)
+                            /* Reset file pointer iterator position first. */
+                            if (fseek(pFile, 0, SEEK_SET) == 0 /* Sucess code. */)
                             {
-                                /* All bytes could be read from input file successfully. */
+                                /* Read file data into newly allocated buffer. */
+                                const size_t eReadBytes = fread(au8FileBuffer, sizeof (uint8_t), *fileSize, pFile);
 
-                                /* Finally, return address to buffer so it can be
-                                 * used by external modules. */
-                                return au8FileBuffer;
+                                /* Close input opened file first. */
+                                fclose(pFile);
+
+                                if (eReadBytes == *fileSize)
+                                {
+                                    /* All bytes could be read from input file successfully. */
+
+                                    /* Finally, return address to buffer so it can be
+                                     * used by external modules. */
+                                    return au8FileBuffer;
+                                }
+                                else
+                                {
+                                    /* Not all bytes from file were read.
+                                     * Fall through. */
+                                }
                             }
                             else
                             {
-                                /* Not all bytes from file were read.
+                                /* Something went wrong with fseek().
                                  * Fall through. */
                             }
                         }
                         else
                         {
-                            /* Something went wrong with fseek().
+                            /* Buffer cannot hold such amount of data.
                              * Fall through. */
                         }
+
+                        /* Set file size to an invalid value. */
+                        *fileSize = IO_INVALID_FILE_SIZE;
                     }
                     else
                     {
-                        /* Buffer cannot hold such amount of data.
-                         * Fall through. */
+                        /* Invalid pointer to file size. */
                     }
                 }
                 else
@@ -176,9 +186,6 @@ const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const peSize)
     {
         /* Invalid pointer to file path. */
     }
-
-    /* Set file size to an invalid value. */
-    *peSize = IO_INVALID_FILE_SIZE;
 
     /* Return failure code if this was reached. */
     return NULL;

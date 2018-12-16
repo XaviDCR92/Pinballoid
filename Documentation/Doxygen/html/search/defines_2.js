@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sprite_5findex_5finvalid',['SPRITE_INDEX_INVALID',['../_gfx_8h.html#a19e44c46f496184190f539b8b134086b',1,'Gfx.h']]]
+  ['pad_5fcheck',['PAD_CHECK',['../_pad_8c.html#a92315c72529264513943d01886393f37',1,'Pad.c']]]
 ];

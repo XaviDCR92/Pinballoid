@@ -12,6 +12,7 @@
  * Includes
  * *************************************/
 
+#include "Timers.h"
 #include "Interrupts.h"
 #include <psx.h>
 #include <stdint.h>
@@ -23,11 +24,7 @@
  * Defines
  * *************************************/
 
-#define TIMER_COUNTER(t)    (((volatile const struct               \
-                            {                                       \
-                               unsigned int counter :16;            \
-                               unsigned int :16;                    \
-                            }*)0x1F801100 + (t * 0x10))->counter)
+#define TIMER_COUNTER(t)    (*(unsigned int*)(0x1F801100 + ((t - 1) * 0x10)) & 0x0000FFFF)
 
 /* *************************************
  * Types definition
@@ -91,6 +88,7 @@ void TimersInit(void)
 ************************************************************************/
 static void ISR_RootCounter2(void)
 {
+#pragma message ("Why is this ISR being actually executed every 1 ms?")
 }
 
 unsigned int RootCounter1Get(void)

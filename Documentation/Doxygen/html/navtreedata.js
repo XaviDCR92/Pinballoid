@@ -7,7 +7,8 @@ var NAVTREE =
       [ "Data Structure Index", "classes.html", null ],
       [ "Data Fields", "functions.html", [
         [ "All", "functions.html", null ],
-        [ "Variables", "functions_vars.html", null ]
+        [ "Variables", "functions_vars.html", null ],
+        [ "Enumerator", "functions_eval.html", null ]
       ] ]
     ] ],
     [ "Files", null, [
@@ -26,7 +27,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_game_8c.html"
+"_file_data_8c.html",
+"structt_to_t.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

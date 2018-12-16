@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['level1',['LEVEL1',['../_game_8h.html#a3aef9486ead21bdcea2968c3540ccbd5a5f6aff2efe946ec43f8bad546893b0af',1,'Game.h']]],
-  ['level_5fundefined',['LEVEL_UNDEFINED',['../_game_8h.html#a3aef9486ead21bdcea2968c3540ccbd5a768413ce734c25283e772b6b3a35a2e1',1,'Game.h']]]
+  ['data',['data',['../struct_file_data.html#a4c3bd92308be0bba4f857004f432f556',1,'FileData']]],
+  ['data_5ftype_5fsound',['DATA_TYPE_SOUND',['../struct_file_data.html#a9861f5d3b598af9c4603e426af556897a96ca7ca83952017a2c50c2825de102de',1,'FileData']]],
+  ['data_5ftype_5fsprite',['DATA_TYPE_SPRITE',['../struct_file_data.html#a9861f5d3b598af9c4603e426af556897a4bc3b28be1b976a4bc0924e552cac60c',1,'FileData']]],
+  ['data_5ftype_5fundefined',['DATA_TYPE_UNDEFINED',['../struct_file_data.html#a9861f5d3b598af9c4603e426af556897ac954aa8a93e0930706dafc511e709cf6',1,'FileData']]],
+  ['datatype',['dataType',['../struct_file_data.html#a215b4627582cb2fc9120007ae7005307',1,'FileData']]]
 ];

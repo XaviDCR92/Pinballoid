@@ -17,6 +17,7 @@
 
 #include "Game.h"
 #include <stddef.h>
+#include <psxgpu.h>
 
 /* *************************************
  * Defines
@@ -36,6 +37,8 @@ enum tMenuResult
 /* *************************************
  * Public variables declaration
  * *************************************/
+
+extern GsSprite globalSprite;
 
 /* *************************************
  * Public functions declaration

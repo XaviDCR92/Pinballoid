@@ -15,6 +15,9 @@
  * Includes
  * *************************************/
 
+#include <stddef.h>
+#include <stdbool.h>
+
 /* *************************************
  * Defines
  * *************************************/
@@ -41,6 +44,8 @@ enum Player
  * Public functions declaration
  * *************************************/
 
-void PlayerInit(void);
+void PlayerInit(const size_t players);
+bool PlayerIsActive(const enum Player player);
+void PlayerHandler(void);
 
 #endif /* PLAYER_H */

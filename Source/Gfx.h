@@ -52,9 +52,8 @@ enum
  * *************************************/
 
 void GfxInit(void);
-void GfxSortSprite(const GsSprite* const psSpr);
 bool GfxSpriteFromFile(const char* const strFilePath, GsSprite* const pSpr);
-void GfxSortSprite(const GsSprite* const psSpr);
+void GfxSortSprite(GsSprite* const psSpr);
 bool GfxIsInsideScreenArea(const short x, const short y, const short w, const short h);
 void GfxDrawScene(void);
 

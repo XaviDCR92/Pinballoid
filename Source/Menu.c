@@ -15,6 +15,7 @@
 #include "stdbool.h"
 #include "Gfx.h"
 #include <psxgpu.h>
+#include <stdio.h>
 
 /* *************************************
  * Defines
@@ -32,7 +33,7 @@
  * Local variables definition
  * *************************************/
 
-static GsSprite globalSprite;
+GsSprite globalSprite;
 
 /* *************************************
  *  Local prototypes declaration
@@ -52,10 +53,8 @@ static enum tMenuResult MenuLoop(void);
 ************************************************************************/
 static bool MenuInit(void)
 {
-    /* Load general sprite. */
-    GfxSpriteFromFile("PB.EXE", &globalSprite);
-
-    return true;
+    printf("Menu\n");
+    return GfxSpriteFromFile("DATA\\SPRITES\\GLOBAL.TIM", &globalSprite);
 }
 
 /*******************************************************************//**

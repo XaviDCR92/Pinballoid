@@ -1,14 +1,19 @@
 var searchData=
 [
-  ['tot_5fblock_5fdcb',['TOT_BLOCK_DCB',['../_threads_8c.html#a6aa6895269ad102e25045823a89948fca9985fbd69195a01a64e7a5c5709b0baf',1,'Threads.c']]],
-  ['tot_5fblock_5fevcb',['TOT_BLOCK_EvCB',['../_threads_8c.html#a6aa6895269ad102e25045823a89948fca002e7a2cc9cfd1406f90c3e7d2e0fe2c',1,'Threads.c']]],
-  ['tot_5fblock_5fexcb',['TOT_BLOCK_ExCB',['../_threads_8c.html#a6aa6895269ad102e25045823a89948fcaf4f53b88b4e7f467e20510444001f2f1',1,'Threads.c']]],
-  ['tot_5fblock_5ffcb',['TOT_BLOCK_FCB',['../_threads_8c.html#a6aa6895269ad102e25045823a89948fca024ca1653c8e12cf25edd86790579acd',1,'Threads.c']]],
-  ['tot_5fblock_5fpcb',['TOT_BLOCK_PCB',['../_threads_8c.html#a6aa6895269ad102e25045823a89948fcab74cea5080594ad5a409ce93b522aa8f',1,'Threads.c']]],
-  ['tot_5fblock_5freserved_5f1',['TOT_BLOCK_RESERVED_1',['../_threads_8c.html#a6aa6895269ad102e25045823a89948fcaae188320d49ec73c52cbd8fa942f3710',1,'Threads.c']]],
-  ['tot_5fblock_5freserved_5f2',['TOT_BLOCK_RESERVED_2',['../_threads_8c.html#a6aa6895269ad102e25045823a89948fca698fb823d030d7a7ba9568f8c0b78004',1,'Threads.c']]],
-  ['tot_5fblock_5freserved_5f3',['TOT_BLOCK_RESERVED_3',['../_threads_8c.html#a6aa6895269ad102e25045823a89948fca20b10eef745176396baf444dc154b02b',1,'Threads.c']]],
-  ['tot_5fblock_5freserved_5f4',['TOT_BLOCK_RESERVED_4',['../_threads_8c.html#a6aa6895269ad102e25045823a89948fca6f6eef6693f4ac24caab3bd079040c58',1,'Threads.c']]],
-  ['tot_5fblock_5freserved_5f5',['TOT_BLOCK_RESERVED_5',['../_threads_8c.html#a6aa6895269ad102e25045823a89948fca8e0ace0a83fe2c9098051ee074dadb41',1,'Threads.c']]],
-  ['tot_5fblock_5ftcb',['TOT_BLOCK_TCB',['../_threads_8c.html#a6aa6895269ad102e25045823a89948fca14f2b95d71e392db918971630de6d895',1,'Threads.c']]]
+  ['key_5fcircle',['KEY_CIRCLE',['../_pad_8h.html#ab3c7af4820830f9166ede9e5623c4e73a83b52a03b0c22f62ef3cf3fc82a68ecb',1,'Pad.h']]],
+  ['key_5fcross',['KEY_CROSS',['../_pad_8h.html#ab3c7af4820830f9166ede9e5623c4e73a9a1e0ea990b96edc46a6f6f7f955f93a',1,'Pad.h']]],
+  ['key_5fdown',['KEY_DOWN',['../_pad_8h.html#ab3c7af4820830f9166ede9e5623c4e73aa9cdac7967bf7d88fdb761138a2a3416',1,'Pad.h']]],
+  ['key_5fl1',['KEY_L1',['../_pad_8h.html#ab3c7af4820830f9166ede9e5623c4e73a372f185d2ea2572d20b54d3473b641b6',1,'Pad.h']]],
+  ['key_5fl2',['KEY_L2',['../_pad_8h.html#ab3c7af4820830f9166ede9e5623c4e73ad76f151aec26db8db3a133f6533f8647',1,'Pad.h']]],
+  ['key_5flanalogb',['KEY_LANALOGB',['../_pad_8h.html#ab3c7af4820830f9166ede9e5623c4e73afdeda45224f53f14d97cebccf56f0154',1,'Pad.h']]],
+  ['key_5fleft',['KEY_LEFT',['../_pad_8h.html#ab3c7af4820830f9166ede9e5623c4e73a612120b69c7dfd46086db7aaebdbcf65',1,'Pad.h']]],
+  ['key_5fr1',['KEY_R1',['../_pad_8h.html#ab3c7af4820830f9166ede9e5623c4e73ad6cd42300d4a027b7e9cecd6bd41a502',1,'Pad.h']]],
+  ['key_5fr2',['KEY_R2',['../_pad_8h.html#ab3c7af4820830f9166ede9e5623c4e73a76270f4f729d9622e811ebb7fc7ce779',1,'Pad.h']]],
+  ['key_5franalogb',['KEY_RANALOGB',['../_pad_8h.html#ab3c7af4820830f9166ede9e5623c4e73a466e99c5ba83c7349ec4ac93f85c0ba2',1,'Pad.h']]],
+  ['key_5fright',['KEY_RIGHT',['../_pad_8h.html#ab3c7af4820830f9166ede9e5623c4e73a6504370d9c6391e1a9da6a1a529b089d',1,'Pad.h']]],
+  ['key_5fselect',['KEY_SELECT',['../_pad_8h.html#ab3c7af4820830f9166ede9e5623c4e73a3b37a163628bc7015aac5efab4a66ef5',1,'Pad.h']]],
+  ['key_5fsquare',['KEY_SQUARE',['../_pad_8h.html#ab3c7af4820830f9166ede9e5623c4e73a0c17bc6b3dc796c826b36125d413f391',1,'Pad.h']]],
+  ['key_5fstart',['KEY_START',['../_pad_8h.html#ab3c7af4820830f9166ede9e5623c4e73a616a1f5c4ed36080ca954453084aea3b',1,'Pad.h']]],
+  ['key_5ftriangle',['KEY_TRIANGLE',['../_pad_8h.html#ab3c7af4820830f9166ede9e5623c4e73a9058eaefc236d2a147e1846a97e72744',1,'Pad.h']]],
+  ['key_5fup',['KEY_UP',['../_pad_8h.html#ab3c7af4820830f9166ede9e5623c4e73a0848a442d907968b211b97bc2bd88acd',1,'Pad.h']]]
 ];

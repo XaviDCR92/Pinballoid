@@ -36,6 +36,6 @@
  * Public functions declaration
  * *************************************/
 
-const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const peSize);
+const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const fileSize);
 
 #endif /* IO_H */

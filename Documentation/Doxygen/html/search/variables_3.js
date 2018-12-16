@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['ulsize',['ulSize',['../structt_to_t.html#a0cc341e8a8713a0f73bd8dd3006d817a',1,'tToT']]]
+  ['data',['data',['../struct_file_data.html#a4c3bd92308be0bba4f857004f432f556',1,'FileData']]],
+  ['datatype',['dataType',['../struct_file_data.html#a215b4627582cb2fc9120007ae7005307',1,'FileData']]]
 ];

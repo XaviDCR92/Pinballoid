@@ -56,6 +56,7 @@ enum Key
  * Public functions declaration
  * *************************************/
 
+void PadHandler(const enum Player player);
 bool PadKeyPressed(const enum Key key, const enum Player player);
 
 #endif /* PAD_H */

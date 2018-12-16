@@ -12,14 +12,12 @@
 
 #include "Paddle.h"
 #include "Gfx.h"
-#include "FileData.h"
 #include "Player.h"
 #include "Level.h"
 #include <fixmath.h>
 #include <stdbool.h>
 #include <stddef.h>
 #include <string.h>
-#include <stdio.h>
 
 /* *****************************************************************************
  * Defines
@@ -77,7 +75,7 @@ static struct PaddleData
  * Local prototypes declaration
  * ****************************************************************************/
 
-static void PaddlePosInit(const size_t paddleN);
+static void PaddlePosInit(const enum Player player);
 
 /* *****************************************************************************
  * Functions definition
@@ -88,39 +86,9 @@ static void PaddlePosInit(const size_t paddleN);
 * \brief    Paddle logic entry point.
 *
 *******************************************************************************/
-void PaddleInit(const size_t players)
+void PaddleInit(const enum Player player)
 {
-    if (players < MAX_PLAYERS)
-    {
-        static bool initDone;
-
-        if (!initDone)
-        {
-            initDone = true;
-        }
-        else
-        {
-        }
-
-        {
-            size_t i;
-
-            for (i = 0; i < MAX_PLAYERS; i++)
-            {
-                struct PaddleData* const paddle = &paddlesData[i];
-
-                memset(paddle, 0, sizeof (struct PaddleData));
-
-                dprintf("%d\n",i);
-
-                if ((paddle->used = (i <= players)))
-                {
-                    dprintf("Paddle %d is now used\n", i);
-                    PaddlePosInit(i);
-                }
-            }
-        }
-    }
+    PaddlePosInit(player);
 }
 
 #if 0
@@ -156,7 +124,7 @@ void PaddleInit(const size_t players)
     } paddlesColour[MAX_PLAYERS];
 #endif
 
-static void PaddlePosInit(const size_t paddleN)
+static void PaddlePosInit(const enum Player player)
 {
     enum
     {
@@ -197,5 +165,5 @@ static void PaddlePosInit(const size_t paddleN)
     };
 
     /* Copy initial coordinates into selected paddle. */
-    memmove(&paddlesData[paddleN], &initPos[paddleN], sizeof (struct FPos));
+    memmove(&paddlesData[player], &initPos[player], sizeof (struct FPos));
 }

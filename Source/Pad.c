@@ -69,11 +69,9 @@ void PadInit(void)
     PAD_CHECK(START);
 }
 
-void PadHandler(void)
+void PadHandler(const enum Player player)
 {
-    enum Player player;
-
-    for (player = 0; player < MAX_PLAYERS; player++)
+    if (player < MAX_PLAYERS)
     {
         enum
         {
