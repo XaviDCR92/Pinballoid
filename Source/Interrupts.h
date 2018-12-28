@@ -28,7 +28,7 @@
 * \brief    List of HW interrupt sources.
 *
 ************************************************************************/
-enum tIntSource
+enum InterruptSource
 {
     INT_SOURCE_VBLANK,
     INT_SOURCE_GPU,
@@ -53,7 +53,7 @@ enum tIntSource
  * Public functions declaration
  * *************************************/
 
-void InterruptsEnableInt(const enum tIntSource eIntSource);
-void InterruptsDisableInt(const enum tIntSource eIntSource);
+void InterruptsEnableInt(const enum InterruptSource intSource);
+void InterruptsDisableInt(const enum InterruptSource intSource);
 
 #endif /* INTERRUPTS_H */

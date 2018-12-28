@@ -40,11 +40,6 @@ enum
  * Local variables definition
  * *************************************/
 
-/* This buffer holds file data read from CD-ROM.
- * It is cleared out on each call to IOLoadFile(),
- * so copy its contents into an auxilar buffer if needed. */
-static uint8_t au8FileBuffer[FILE_BUFFER_SIZE];
-
 /* *************************************
  *  Local prototypes declaration
  * *************************************/
@@ -73,9 +68,8 @@ static uint8_t au8FileBuffer[FILE_BUFFER_SIZE];
 * \return   Address to a read-only buffer with file data if successful,
 *           NULL pointer otherwise.
 *
-* \return   fileSize
-*  is assigned to actual file size in bytes
-*           if successful, IO_INVALID_FILE_SIZE otherwise.
+* \return   fileSize is assigned to actual file size in bytes if
+*           successful, \ref IO_INVALID_FILE_SIZE otherwise.
 *
 ************************************************************************/
 const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const fileSize)
@@ -132,8 +126,13 @@ const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const fileSize)
                             /* Reset file pointer iterator position first. */
                             if (fseek(pFile, 0, SEEK_SET) == 0 /* Sucess code. */)
                             {
+                                /* This buffer holds file data read from CD-ROM.
+                                 * It is cleared out on each call to IOLoadFile(),
+                                 * so copy its contents into an auxilar buffer if needed. */
+                                static uint8_t fileBuffer[FILE_BUFFER_SIZE];
+
                                 /* Read file data into newly allocated buffer. */
-                                const size_t eReadBytes = fread(au8FileBuffer, sizeof (uint8_t), *fileSize, pFile);
+                                const size_t eReadBytes = fread(fileBuffer, sizeof (uint8_t), *fileSize, pFile);
 
                                 /* Close input opened file first. */
                                 fclose(pFile);
@@ -144,7 +143,7 @@ const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const fileSize)
 
                                     /* Finally, return address to buffer so it can be
                                      * used by external modules. */
-                                    return au8FileBuffer;
+                                    return fileBuffer;
                                 }
                                 else
                                 {

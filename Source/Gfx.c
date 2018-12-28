@@ -41,17 +41,17 @@
 ************************************************************************/
 #define MAX_SIZE_FOR_GSSPRITE   ((short)0xFF)
 
-/* *************************************
+/* *****************************************************************************
  * Types definition
- * *************************************/
+ * ****************************************************************************/
 
-/* *************************************
+/* *****************************************************************************
  * Global variables definition
- * *************************************/
+ * ****************************************************************************/
 
-/* *************************************
+/* *****************************************************************************
  * Local variables definition
- * *************************************/
+ * ****************************************************************************/
 
 /* The drawing environment points to VRAM
  * coordinates where primitive data is
@@ -66,9 +66,9 @@ static GsDispEnv sDispEnv;
 /* This variable is set to true on VSYNC event. */
 static volatile bool bSyncFlag;
 
-/* *************************************
- *  Local prototypes declaration
- * *************************************/
+/* *****************************************************************************
+ * Local prototypes declaration
+ * ****************************************************************************/
 
 static void GfxInitDrawEnv(void);
 static void GfxInitDispEnv(void);
@@ -77,17 +77,17 @@ static void GfxSortBigSprite(GsSprite* const psSpr);
 static void GfxSetPrimList(void);
 static void ISR_VBlank(void);
 
-/* *************************************
+/* *****************************************************************************
  * Functions definition
- * *************************************/
+ * ****************************************************************************/
 
-/*******************************************************************//**
+/***************************************************************************//**
 *
 * \brief    Initialization of Gfx module.
 *
 * \remarks  This is where PSX GPU and its interface get initialized.
 *
-************************************************************************/
+*******************************************************************************/
 void GfxInit(void)
 {
     /* Graphics synthetiser (GPU) initialization. */
@@ -120,7 +120,7 @@ void GfxInit(void)
     SetVBlankHandler(&ISR_VBlank);
 }
 
-/*******************************************************************//**
+/***************************************************************************//**
 *
 * \brief    Loads data from file indicated by strFilePath, uploads
 *           it into VRAM and sets up a new GsSprite instance.
@@ -137,7 +137,7 @@ void GfxInit(void)
 *
 * \see      IOLoadFile() for file I/O handling implementation.
 *
-************************************************************************/
+*******************************************************************************/
 bool GfxSpriteFromFile(const char* const strFilePath, GsSprite* const pSpr)
 {
     /* File size in bytes. Modified by IOLoadFile(). */
@@ -193,15 +193,15 @@ bool GfxSpriteFromFile(const char* const strFilePath, GsSprite* const pSpr)
     return false;
 }
 
-/*******************************************************************//**
+/***************************************************************************//**
 *
-* \brief    Draws current primitive list into screen and performs
-*           double buffering.
+* \brief    Draws current primitive list into screen and performs double
+*           buffering.
 *
-* \remarks  Blocking function. This function waits for GPU to
-*           be free and GPU VSYNC IRQ flag to be set.
+* \remarks  Blocking function. This function waits for GPU to be free and GPU
+*           VSYNC IRQ flag to be set.
 *
-************************************************************************/
+*******************************************************************************/
 void GfxDrawScene(void)
 {
     /* Hold program execution until VSYNC flag is set
@@ -221,10 +221,10 @@ void GfxDrawScene(void)
     GfxSetPrimList();
 }
 
-/*******************************************************************//**
+/***************************************************************************//**
 *
-* \brief    Indicates whether a rectangle defined by x, y, w and h
-*           is inside active drawing area or not.
+* \brief    Indicates whether a rectangle defined by x, y, w and h whether
+*           inside current drawing area.
 *
 * \param    x
 *               Rectangle initial X offset.
@@ -241,7 +241,7 @@ void GfxDrawScene(void)
 * \return   Returns true if rectangle defined by input parameters
 *           is inside screen area, false otherwise.
 *
-************************************************************************/
+*******************************************************************************/
 bool GfxIsInsideScreenArea(const short x, const short y, const short w, const short h)
 {
     if (((x + w) >= 0)
@@ -265,7 +265,7 @@ bool GfxIsInsideScreenArea(const short x, const short y, const short w, const sh
     return false;
 }
 
-/*******************************************************************//**
+/***************************************************************************//**
 *
 * \brief    Indicates whether a tSprite instance is inside active
 *           drawing environment area.
@@ -273,7 +273,7 @@ bool GfxIsInsideScreenArea(const short x, const short y, const short w, const sh
 * \param    psSpr
 *               Pointer to tSprite structure.
 *
-************************************************************************/
+*******************************************************************************/
 bool GfxIsSpriteInsideScreenArea(const GsSprite* const psSpr)
 {
     /* Define X/Y and width/height parameters. */
@@ -286,23 +286,22 @@ bool GfxIsSpriteInsideScreenArea(const GsSprite* const psSpr)
     return GfxIsInsideScreenArea(x, y, w, h);
 }
 
-/*******************************************************************//**
+/***************************************************************************//**
 *
-* \brief    Extracting information from tSprite instance, this
-*           function adds a low-level GsSprite structure into
-*           internal primitive list if inside drawing environment area.
+* \brief    Extracting information from tSprite instance, this function adds a
+*           low-level GsSprite structure into internal primitive list if inside
+*           drawing environment area.
 *
 * \param    psSpr
-*               Index of low-level sprite structure inside
-*               internal array.
+*               Index of low-level sprite structure inside the internal array.
 *
-* \remarks  Sprites bigger than 256x256 px are also supported.
-*           Internally, GfxSortBigSprite draws two primitive, so up to
-*           512x256 px primitives are supported.
+* \remarks  Sprites bigger than 256x256 px are also supported. Internally,
+*           GfxSortBigSprite() draws two primitive, so up to 512x256 px
+*           primitives are supported.
 *
 * \see      GfxSortBigSprite() to see how big sprites are handled.
 *
-************************************************************************/
+*******************************************************************************/
 void GfxSortSprite(GsSprite* const psSpr)
 {
     if (GfxIsSpriteInsideScreenArea(psSpr))
@@ -317,16 +316,16 @@ void GfxSortSprite(GsSprite* const psSpr)
     }
 }
 
-/*******************************************************************//**
+/***************************************************************************//**
 *
-* \brief    Processes big sprites (e.g.: more than 256 px wide) by
-*           drawing two separate primitives.
+* \brief    Processes big sprites (e.g.: more than 256 px wide) by drawing two
+*           separate primitives.
 *
 * \param    psSpr
-*               Pointer to low-level GsSprite structure (given
-*               by \ref GfxSortSprite()).
+*               Pointer to low-level GsSprite structure (given by
+*               GfxSortSprite()).
 *
-************************************************************************/
+*******************************************************************************/
 static void GfxSortBigSprite(GsSprite* const psSpr)
 {
     enum

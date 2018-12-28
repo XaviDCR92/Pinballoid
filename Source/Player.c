@@ -71,6 +71,7 @@ void PlayerInit(const size_t players)
         /* Reset player score. */
         data->score = 0;
 
+        /* Initialize paddle for selected player. */
         PaddleInit(player);
     }
 }
@@ -96,7 +97,10 @@ void PlayerHandler(void)
 
         if (pData->active)
         {
+            /* Update low-level pad data for selected player. */
             PadHandler(player);
+
+            Paddle(player);
         }
         else
         {

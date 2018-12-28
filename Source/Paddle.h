@@ -34,5 +34,6 @@
  * *************************************/
 
 void PaddleInit(const enum Player player);
+void Paddle(const enum Player player);
 
 #endif /* PADDLE_H */

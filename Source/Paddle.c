@@ -12,12 +12,15 @@
 
 #include "Paddle.h"
 #include "Gfx.h"
+#include "Pad.h"
 #include "Player.h"
 #include "Level.h"
 #include <fixmath.h>
 #include <stdbool.h>
 #include <stddef.h>
 #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 /* *****************************************************************************
  * Defines
@@ -76,6 +79,10 @@ static struct PaddleData
  * ****************************************************************************/
 
 static void PaddlePosInit(const enum Player player);
+static void PaddleSpeed(const enum Player player);
+static void PaddlePos(const enum Player player);
+static void PaddleAdjustSpeed(const enum Player player, fix16_t* const speed, const enum Key key, const fix16_t factor);
+static void PaddleAdjustPos(fix16_t* const speed, fix16_t* const pos);
 
 /* *****************************************************************************
  * Functions definition
@@ -85,10 +92,171 @@ static void PaddlePosInit(const enum Player player);
 *
 * \brief    Paddle logic entry point.
 *
+* \param    player
+*               Selected \ref Player instance.
+*
 *******************************************************************************/
 void PaddleInit(const enum Player player)
 {
     PaddlePosInit(player);
+}
+
+/***************************************************************************//**
+*
+* \brief    Paddle logic entry point.
+*
+*******************************************************************************/
+void Paddle(const enum Player player)
+{
+    if (player < MAX_PLAYERS)
+    {
+        /* Update paddle speed according to pad status. */
+        PaddleSpeed(player);
+
+        /* Update paddle position according
+         * to newly calculated speed. */
+        PaddlePos(player);
+    }
+    else
+    {
+        /* Invalid selected Player instance. Exit. */
+    }
+}
+
+static void PaddleSpeed(const enum Player player)
+{
+    static const enum PaddleDirection
+    {
+        UNDEFINED,
+        UP_DOWN,
+        LEFT_RIGHT
+    } directions[MAX_PLAYERS] =
+    {
+        [PLAYER_0] = LEFT_RIGHT,
+        [PLAYER_1] = LEFT_RIGHT,
+        [PLAYER_2] = UP_DOWN,
+        [PLAYER_3] = UP_DOWN
+    };
+
+    /* Retrieve PaddleData instance given selected player. */
+    struct PaddleData* const paddleData = &paddlesData[player];
+
+    switch (directions[player])
+    {
+        case LEFT_RIGHT:
+        {
+            /* Retrieve current X position. */
+            fix16_t* const speed = &paddleData->fspeed.x;
+
+            PaddleAdjustSpeed(player, speed, KEY_LEFT, -1);
+            PaddleAdjustSpeed(player, speed, KEY_RIGHT, 1);
+        }
+        break;
+
+        case UP_DOWN:
+        {
+            /* Retrieve current Y position. */
+            fix16_t* const speed = &paddleData->fspeed.y;
+
+            PaddleAdjustSpeed(player, speed, KEY_UP, -1);
+            PaddleAdjustSpeed(player, speed, KEY_DOWN, 1);
+        }
+        break;
+
+        case UNDEFINED:
+            /* Fall through. */
+        default:
+        break;
+    }
+}
+
+static void PaddleAdjustSpeed(const enum Player player, fix16_t* const speed, const enum Key key, const fix16_t factor)
+{
+    enum
+    {
+        MAX_SPEED = 0x800,
+        SPEED_DIFF = 0x10
+    };
+
+    if (PadKeyPressed(player, key))
+    {
+        if (factor > 0)
+        {
+            if ((*speed + (fix16_t)SPEED_DIFF) < ((fix16_t)MAX_SPEED))
+            {
+                /* Incrase X speed. */
+                *speed += (fix16_t)SPEED_DIFF * factor;
+            }
+            else
+            {
+                /* Saturate negative X speed. */
+                *speed = (fix16_t)MAX_SPEED * factor;
+            }
+        }
+        else if (factor < 0)
+        {
+            if ((*speed - (fix16_t)SPEED_DIFF) < ((fix16_t)MAX_SPEED))
+            {
+                /* Incrase X speed. */
+                *speed -= (fix16_t)SPEED_DIFF * factor;
+            }
+            else
+            {
+                /* Saturate negative X speed. */
+                *speed = (fix16_t)MAX_SPEED * factor;
+            }
+        }
+    }
+    else if (*speed > ((fix16_t)SPEED_DIFF * factor))
+    {
+        //~ *speed -= (fix16_t)SPEED_DIFF * factor;
+    }
+    else
+    {
+        //~ *speed = 0;
+    }
+}
+
+static void PaddlePos(const enum Player player)
+{
+    struct PaddleData* const paddleData = &paddlesData[player];
+
+    PaddleAdjustPos(&paddleData->fspeed.x, &paddlesData->fpos.x);
+    PaddleAdjustPos(&paddleData->fspeed.y, &paddlesData->fpos.y);
+
+    dprintf("X speed = 0x%08X\n", paddleData->fspeed.x);
+}
+
+static void PaddleAdjustPos(fix16_t* const speed, fix16_t* const pos)
+{
+    if (*speed < 0)
+    {
+        if ((*pos + *speed) >= FIX16_FROM_INT(WALL_GAP))
+        {
+            *pos += *speed;
+        }
+        else
+        {
+            *pos = FIX16_FROM_INT(WALL_GAP);
+            *speed = 0;
+        }
+    }
+    else if (*speed > 0)
+    {
+        if ((*pos + *speed) <= FIX16_FROM_INT(LEVEL_SIZE - WALL_GAP))
+        {
+            *pos += *speed;
+        }
+        else
+        {
+            *pos = FIX16_FROM_INT(LEVEL_SIZE - WALL_GAP);
+            *speed = 0;
+        }
+    }
+    else
+    {
+        /* Nothing to do. */
+    }
 }
 
 #if 0
@@ -165,5 +333,5 @@ static void PaddlePosInit(const enum Player player)
     };
 
     /* Copy initial coordinates into selected paddle. */
-    memmove(&paddlesData[player], &initPos[player], sizeof (struct FPos));
+    memmove(&paddlesData[player].fpos, &initPos[player], sizeof (struct FPos));
 }

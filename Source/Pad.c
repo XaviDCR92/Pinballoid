@@ -83,18 +83,7 @@ void PadHandler(const enum Player player)
 
         psx_pad_state* const padState = &padsState[player];
 
-        dprintf("sizeof = %d\n", sizeof (padRawData[0]));
-
         pad_read_raw(player, padRawData[player]);
-
-        size_t i;
-
-        for (i = 0; i < RAW_DATA_SIZE; i++)
-        {
-            dprintf("padRawData[%d][%d] = 0x%02X\n", player, i, padRawData[player][i]);
-        }
-
-        dprintf("padState->id = 0x%02X\n", padState->id);
 
         PSX_PollPad_Fast_Ex(padRawData[player], padState);
     }
@@ -115,12 +104,16 @@ enum psx_pad_types PadType(const enum Player player)
 * \brief
 *
 ************************************************************************/
-bool PadKeyPressed(const enum Key key, const enum Player player)
+bool PadKeyPressed(const enum Player player, const enum Key key)
 {
     if (player < MAX_PLAYERS)
     {
         if (key < MAX_KEYS)
         {
+            if (padsState[player].buttons & (1 << key))
+            {
+                return true;
+            }
         }
     }
 

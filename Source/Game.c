@@ -11,6 +11,7 @@
  * ****************************************************************************/
 
 #include "Game.h"
+#include "Gfx.h"
 #include "Menu.h"
 #include "Player.h"
 #include "Timers.h"
@@ -40,10 +41,10 @@
  * Local prototypes declaration
  * ****************************************************************************/
 
- static void GameStart(const enum tLevel eSelectedLevel, const size_t players);
- static void GameInit(const size_t players);
- static void GameInitFiles(void);
- static void GameLoop(const size_t players);
+static void GameStart(const enum tLevel eSelectedLevel, const size_t players);
+static void GameInit(const size_t players);
+static void GameInitFiles(void);
+static void GameLoop(void);
 
 /* *****************************************************************************
  * Functions definition
@@ -69,6 +70,7 @@ void Game(void)
             /* Get selected level from Menu. */
             const enum tLevel eSelectedLevel = MenuGetSelectedLevel();
 
+            /* Get number of active players. */
             const size_t players = MenuGetSelectedPlayers();
 
             if (eSelectedLevel < MAX_LEVELS)
@@ -110,7 +112,7 @@ static void GameStart(const enum tLevel eSelectedLevel, const size_t players)
     GameInit(players);
 
     /* Gameplay. */
-    GameLoop(players);
+    GameLoop();
 }
 
 /***************************************************************************//**
@@ -140,6 +142,8 @@ static void GameInit(const size_t players)
         initDone = true;
     }
 
+    /* Initialize player data according
+     * number of selected players. */
     PlayerInit(players);
 }
 
@@ -148,7 +152,7 @@ static void GameInitFiles(void)
 
 }
 
-static void GameLoop(const size_t players)
+static void GameLoop(void)
 {
     for (;;)
     {

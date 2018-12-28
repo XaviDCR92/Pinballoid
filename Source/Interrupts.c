@@ -21,6 +21,7 @@
  * Defines
  * *************************************/
 
+#ifndef I_MASK
 /*******************************************************************//**
 *
 * \brief    Interrupt mask register.
@@ -43,7 +44,6 @@
 *           \arg    Bits 16-31  Garbage
 *
 ************************************************************************/
-#ifndef I_MASK
 #define I_MASK  (*(volatile unsigned int*)0x1F801074)
 #endif /* I_MASK */
 
@@ -69,58 +69,58 @@
 
 /*******************************************************************//**
 *
-* \brief    Enables an interrupt source given by eIntSource.
+* \brief    Enables an interrupt source given by intSource.
 *
-* \param    eIntSource
+* \param    intSource
 *               HW interrupt source.
 *
-* \see      \ref tIntSource for a list of possible HW interrupt causes.
+* \see      \ref InterruptSource for a list of possible HW interrupt causes.
 *
 ************************************************************************/
-void InterruptsEnableInt(const enum tIntSource eIntSource)
+void InterruptsEnableInt(const enum InterruptSource intSource)
 {
-    if (eIntSource < MAX_INTERRUPT_SOURCES)
+    if (intSource < MAX_INTERRUPT_SOURCES)
     {
         /* Disable interrupts while I_MASK is modified. */
         EnterCriticalSection();
 
         /* Set bit for selected interrupt source. */
-        I_MASK |= 1 << eIntSource;
+        I_MASK |= 1 << intSource;
 
         /* Re-enable interrupts. */
         ExitCriticalSection();
     }
     else
     {
-        /* Invalid selected tIntSource instance. Exit. */
+        /* Invalid selected InterruptSource instance. Exit. */
     }
 }
 
 /*******************************************************************//**
 *
-* \brief    Disables an interrupt source given by eIntSource.
+* \brief    Disables an interrupt source given by intSource.
 *
-* \param    eIntSource
+* \param    intSource
 *               HW interrupt source.
 *
-* \see      \ref tIntSource for a list of possible HW interrupt causes.
+* \see      \ref InterruptSource for a list of possible HW interrupt causes.
 *
 ************************************************************************/
-void InterruptsDisableInt(const enum tIntSource eIntSource)
+void InterruptsDisableInt(const enum InterruptSource intSource)
 {
-    if (eIntSource < MAX_INTERRUPT_SOURCES)
+    if (intSource < MAX_INTERRUPT_SOURCES)
     {
         /* Disable interrupts while I_MASK is modified. */
         EnterCriticalSection();
 
         /* Remove bit for selected interrupt source. */
-        I_MASK &= ~(1 << eIntSource);
+        I_MASK &= ~(1 << intSource);
 
         /* Re-enable interrupts while I_MASK is modified. */
         ExitCriticalSection();
     }
     else
     {
-        /* Invalid selected tIntSource instance. Exit. */
+        /* Invalid selected InterruptSource instance. Exit. */
     }
 }

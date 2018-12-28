@@ -57,6 +57,6 @@ enum Key
  * *************************************/
 
 void PadHandler(const enum Player player);
-bool PadKeyPressed(const enum Key key, const enum Player player);
+bool PadKeyPressed(const enum Player player, const enum Key key);
 
 #endif /* PAD_H */

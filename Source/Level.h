@@ -25,8 +25,9 @@
 
 enum
 {
-    LEVEL_X = 240,
-    LEVEL_Y = LEVEL_X,
+    LEVEL_SIZE = 240,
+    LEVEL_X = LEVEL_SIZE,
+    LEVEL_Y = LEVEL_SIZE,
     WALL_THICKNESS = 8,
     WALL_GAP = 16
 };
