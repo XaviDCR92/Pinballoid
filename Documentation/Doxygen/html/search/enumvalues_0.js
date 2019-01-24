@@ -1,6 +1,0 @@
-var searchData=
-[
-  ['data_5ftype_5fsound',['DATA_TYPE_SOUND',['../struct_file_data.html#a9861f5d3b598af9c4603e426af556897a96ca7ca83952017a2c50c2825de102de',1,'FileData']]],
-  ['data_5ftype_5fsprite',['DATA_TYPE_SPRITE',['../struct_file_data.html#a9861f5d3b598af9c4603e426af556897a4bc3b28be1b976a4bc0924e552cac60c',1,'FileData']]],
-  ['data_5ftype_5fundefined',['DATA_TYPE_UNDEFINED',['../struct_file_data.html#a9861f5d3b598af9c4603e426af556897ac954aa8a93e0930706dafc511e709cf6',1,'FileData']]]
-];

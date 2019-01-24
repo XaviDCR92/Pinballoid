@@ -23,11 +23,6 @@
  * Defines
  * *************************************/
 
-enum
-{
-    FILE_BUFFER_SIZE = (182 << 10)
-};
-
 /* *************************************
  * Types definition
  * *************************************/
@@ -112,6 +107,14 @@ const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const fileSize)
                 {
                     if (fileSize != NULL)
                     {
+                        enum
+                        {
+                            /* This enum defines the maximum number
+                             * of bytes that can be stored on an
+                             * internal buffer when reading CD-ROM data. */
+                            FILE_BUFFER_SIZE = 130 << 10
+                        };
+
                         /* File pointer could be successfully
                          * moved to the new position. */
 
@@ -132,12 +135,12 @@ const uint8_t* IOLoadFile(const char* const strFilePath, size_t* const fileSize)
                                 static uint8_t fileBuffer[FILE_BUFFER_SIZE];
 
                                 /* Read file data into newly allocated buffer. */
-                                const size_t eReadBytes = fread(fileBuffer, sizeof (uint8_t), *fileSize, pFile);
+                                const size_t readBytes = fread(fileBuffer, sizeof (uint8_t), *fileSize, pFile);
 
                                 /* Close input opened file first. */
                                 fclose(pFile);
 
-                                if (eReadBytes == *fileSize)
+                                if (readBytes == *fileSize)
                                 {
                                     /* All bytes could be read from input file successfully. */
 
